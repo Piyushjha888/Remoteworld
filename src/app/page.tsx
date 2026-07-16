@@ -6,6 +6,7 @@ import Features from "@/components/landing/Features";
 import StorySection from "@/components/landing/StorySection";
 import Download from "@/components/landing/Download";
 import FAQ from "@/components/landing/FAQ";
+import PartnerForm from "@/components/landing/PartnerForm";
 import SmoothScroll from "@/components/providers/SmoothScroll";
 
 export default function Home() {
@@ -18,6 +19,7 @@ export default function Home() {
         <Features />
         <StorySection />
         <Download />
+        <PartnerForm />
         <FAQ />
       </main>
       <Footer />
