@@ -29,7 +29,7 @@ export default function Download() {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col lg:flex-row items-center justify-between gap-16">
-        
+
         {/* Left Content column */}
         <div className="lg:w-1/2 space-y-8 text-center lg:text-left">
           <AnimatedSection direction="left" delay={0.1}>
@@ -67,7 +67,7 @@ export default function Download() {
           </StaggerContainer>
 
           {/* Download Buttons with spring scale hover triggers */}
-          <motion.div 
+          <motion.div
             className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-6"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -75,21 +75,7 @@ export default function Download() {
             transition={{ delay: 0.5 }}
           >
             {/* App Store Button */}
-            <motion.a
-              href="https://apps.apple.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-ink hover:bg-black text-white px-6 py-3 rounded-xl flex items-center justify-center space-x-3 border border-surface-400/30 cursor-pointer"
-              whileHover={{ scale: 1.05, y: -2 }}
-              whileTap={{ scale: 0.98 }}
-              transition={{ type: "spring", stiffness: 300, damping: 20 }}
-            >
-              <Apple className="w-8 h-8" />
-              <div className="text-left">
-                <div className="text-xs">Download on the</div>
-                <div className="text-lg font-bold leading-none">App Store</div>
-              </div>
-            </motion.a>
+
 
             {/* Google Play Button */}
             <motion.a
@@ -113,7 +99,7 @@ export default function Download() {
         {/* Phone Mockup with 3D animation */}
         <div className="lg:w-1/2 flex justify-center perspective-1000">
           <AnimatedSection direction="right" delay={0.2} className="w-full flex justify-center">
-            <motion.div 
+            <motion.div
               className="mockup-3d"
               whileHover={{ rotateY: 0, rotateX: 0 }}
               transition={{ duration: 0.5 }}

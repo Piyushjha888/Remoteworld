@@ -16,7 +16,7 @@ export default function Navbar() {
       }
 
       const scrollPos = window.scrollY + 350;
-      
+
       const getAbsoluteTop = (id: string) => {
         const el = document.getElementById(id);
         if (!el) return Infinity;
@@ -60,20 +60,21 @@ export default function Navbar() {
         style={{
           width: active ? 68 : 58,
           height: active ? 68 : 58,
-          backgroundColor: "#1c1c1e",
+          backgroundColor: "#323C3E",
         }}
       >
         {/* Morphing active ring */}
         {active && (
           <motion.div
             layoutId="activeRing"
-            className="absolute rounded-full border-4 border-white pointer-events-none"
+            className="absolute rounded-full border-4 pointer-events-none"
             style={{
               top: -4,
               left: -4,
               right: -4,
               bottom: -4,
-              boxShadow: "0 6px 20px rgba(0,0,0,0.35)",
+              borderColor: "#03A1AC",
+              boxShadow: "0 6px 20px rgba(3,161,172,0.4)",
             }}
             transition={{ type: "spring", stiffness: 350, damping: 28 }}
           />
@@ -83,7 +84,7 @@ export default function Navbar() {
           style={{
             width: active ? 26 : 23,
             height: active ? 26 : 23,
-            color: active ? "#fff" : "rgba(255,255,255,0.55)",
+            color: active ? "#03A1AC" : "#f4f4fbff",
           }}
         />
       </button>
@@ -97,7 +98,7 @@ export default function Navbar() {
       style={{
         width: 16,
         height: 42,
-        backgroundColor: "#1c1c1e",
+        backgroundColor: "#323c3ef5",
         marginLeft: -9,
         marginRight: -9,
         borderRadius: 6,
@@ -111,7 +112,7 @@ export default function Navbar() {
       style={{
         width: 18,
         height: 22,
-        backgroundColor: "#1c1c1e",
+        backgroundColor: "#323c3ef5",
         marginLeft: -6,
         marginRight: -6,
         borderRadius: 5,
@@ -148,7 +149,7 @@ export default function Navbar() {
           style={{
             width: 64,
             height: 64,
-            background: "linear-gradient(135deg, #03A1AC 0%, #08E93C 100%)",
+            background: "linear-gradient(135deg, #4285F4 0%, #EA4335 33%, #FBBC05 66%, #34A853 100%)",
             padding: 3.5,
           }}
           whileHover={{ scale: 1.1 }}
@@ -156,17 +157,23 @@ export default function Navbar() {
         >
           <div
             className="w-full h-full rounded-full flex items-center justify-center transition-colors duration-300 group-hover:bg-[#2c2c30]"
-            style={{ backgroundColor: "#1c1c1e" }}
+            style={{ backgroundColor: "#323C3E" }}
           >
-            <Play
-              className="transition-colors duration-300 group-hover:text-white"
-              style={{
-                width: 26,
-                height: 26,
-                marginLeft: 2,
-                color: "rgba(255,255,255,0.85)",
-              }}
-            />
+            {/* Circular white background badge */}
+            <div 
+              className="w-9 h-9 rounded-full bg-white flex items-center justify-center shadow-md transition-transform duration-300 group-hover:scale-105"
+            >
+              <svg 
+                viewBox="0 0 466 511.98" 
+                className="w-5 h-5 ml-0.5" 
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path fill="#EA4335" d="M199.9 237.8 1.4 470.17c7.22 24.57 30.16 41.81 55.8 41.81 11.16 0 20.93-2.79 29.3-8.37l244.16-139.46L199.9 237.8z"/>
+                <path fill="#FBBC04" d="m433.91 205.1-104.65-60-111.61 110.22 113.01 108.83 104.64-58.6c18.14-9.77 30.7-29.3 30.7-50.23-1.4-20.93-13.95-40.46-32.09-50.22z"/>
+                <path fill="#34A853" d="M199.42 273.45 329.27 145.1 87.9 8.37C79.53 2.79 68.36 0 57.2 0 30.7 0 6.98 18.14 1.4 41.86l198.02 231.59z"/>
+                <path fill="#4285F4" d="M1.39 41.86C0 46.04 0 51.63 0 57.2v397.64c0 5.57 0 9.76 1.4 15.34l216.27-214.86L1.39 41.86z"/>
+              </svg>
+            </div>
           </div>
         </motion.a>
 
