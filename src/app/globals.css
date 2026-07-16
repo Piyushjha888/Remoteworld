@@ -1,0 +1,131 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-light: #09CEDB;
+  --color-brand: #03A1AC;
+  --color-brand-dark: #038A94;
+
+  --color-accent-light: #30FF60;
+  --color-accent: #08E93C;
+  --color-accent-alt: #03E991;
+
+  --color-surface-50: #FCFCFC;
+  --color-surface-100: #E2E4E4;
+  --color-surface-200: #D8D8D8;
+  --color-surface-300: #D3D3D3;
+  --color-surface-400: #CFCFCF;
+
+  --color-highlight-light: #FFD343;
+  --color-highlight: #FFB900;
+  --color-highlight-dark: #FFAC12;
+
+  --color-alert: #FD3C3C;
+  --color-ink: #323C3E;
+  --color-ink-muted: #6E7984;
+
+  --color-support-purple: #CDBDF7;
+  --color-support-blue: #809CE6;
+  --color-support-teal: #8CE4EC;
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-pulse-slow: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-15px);
+    }
+  }
+}
+
+:root {
+  --background: #FCFCFC;
+  --foreground: #323C3E;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+}
+
+/* Smooth reveal for accordion */
+.accordion-content {
+  transition: max-height 0.3s ease-out, opacity 0.3s ease-out, padding 0.3s ease;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+}
+.accordion-content.open {
+  max-height: 500px;
+  opacity: 1;
+}
+
+/* Phone mockup styles */
+.phone-mockup {
+  border: 12px solid #323C3E;
+  border-radius: 40px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  position: relative;
+  background-color: white;
+  overflow: hidden;
+}
+.phone-mockup::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40%;
+  height: 24px;
+  background-color: #323C3E;
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+  z-index: 10;
+}
+
+/* 3D Perspective rotation for Phone Mockup */
+.perspective-1000 {
+  perspective: 1000px;
+}
+.mockup-3d {
+  transform: perspective(1000px) rotateY(-10deg) rotateX(5deg);
+  transition: transform 0.5s ease;
+}
+.mockup-3d:hover {
+  transform: perspective(1000px) rotateY(0deg) rotateX(0deg);
+}
+
+/* Soft gradient background for Hero */
+.hero-gradient {
+  background: linear-gradient(135deg, #E2E4E4 0%, #FCFCFC 50%, #8CE4EC 100%);
+}
+
+/* Lord Icon custom element sizing */
+lord-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Performance hints for animated elements */
+.will-change-transform {
+  will-change: transform;
+}
+.will-change-opacity {
+  will-change: opacity;
+}
+
+/* Smooth Lenis scroll overrides */
+html.lenis, html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
