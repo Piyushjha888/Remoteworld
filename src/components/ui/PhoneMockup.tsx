@@ -1,93 +1,160 @@
 "use client";
 
-import { useState } from "react";
-import { Wifi, Battery, Check, Home, Bell, User } from "lucide-react";
+import { useState, useEffect, useCallback, useRef } from "react";
+import { motion, AnimatePresence, type PanInfo } from "framer-motion";
+import Image from "next/image";
+
+const screens = [
+  { src: "/screens/flow-1.jpg", alt: "RemoteWard Splash Screen" },
+  { src: "/screens/flow-2.jpg", alt: "Welcome & Get Started" },
+  { src: "/screens/flow-3.jpg", alt: "Home Dashboard" },
+  { src: "/screens/flow-4.jpg", alt: "Link Health Records" },
+  { src: "/screens/flow-5.jpg", alt: "ABHA Profile" },
+  { src: "/screens/flow-6.jpg", alt: "SCD Care Module" },
+  { src: "/screens/flow-7.jpg", alt: "Medications Tracker" },
+  { src: "/screens/flow-8.jpg", alt: "Meditation & Wellness" },
+];
+
+const AUTOPLAY_INTERVAL = 4000; // 4 seconds
+const SWIPE_THRESHOLD = 50; // minimum px for a swipe to register
+const SWIPE_PAUSE_DURATION = 8000; // pause autoplay 8s after manual swipe
+
+// Slide direction variants
+const slideVariants = {
+  enter: (direction: number) => ({
+    x: direction > 0 ? "100%" : "-100%",
+    opacity: 0.5,
+  }),
+  center: {
+    x: 0,
+    opacity: 1,
+  },
+  exit: (direction: number) => ({
+    x: direction > 0 ? "-100%" : "100%",
+    opacity: 0.5,
+  }),
+};
 
 export default function PhoneMockup() {
-  const [medTaken, setMedTaken] = useState(false);
+  const [[currentIndex, direction], setPage] = useState([0, 0]);
+  const [isPaused, setIsPaused] = useState(false);
+  const pauseTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const autoplayRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Navigate to a specific slide
+  const paginate = useCallback(
+    (newDirection: number) => {
+      setPage(([prev]) => {
+        const next = (prev + newDirection + screens.length) % screens.length;
+        return [next, newDirection];
+      });
+    },
+    []
+  );
+
+  // Go to specific dot
+  const goToSlide = useCallback((index: number) => {
+    setPage(([prev]) => {
+      const dir = index > prev ? 1 : -1;
+      return [index, dir];
+    });
+    // Pause autoplay briefly on manual navigation
+    setIsPaused(true);
+    if (pauseTimeoutRef.current) clearTimeout(pauseTimeoutRef.current);
+    pauseTimeoutRef.current = setTimeout(() => setIsPaused(false), SWIPE_PAUSE_DURATION);
+  }, []);
+
+  // Auto-scroll
+  useEffect(() => {
+    if (isPaused) return;
+
+    autoplayRef.current = setInterval(() => {
+      paginate(1);
+    }, AUTOPLAY_INTERVAL);
+
+    return () => {
+      if (autoplayRef.current) clearInterval(autoplayRef.current);
+    };
+  }, [isPaused, paginate]);
+
+  // Cleanup on unmount
+  useEffect(() => {
+    return () => {
+      if (pauseTimeoutRef.current) clearTimeout(pauseTimeoutRef.current);
+      if (autoplayRef.current) clearInterval(autoplayRef.current);
+    };
+  }, []);
+
+  // Handle swipe gestures
+  const handleDragEnd = (_: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
+    const { offset, velocity } = info;
+    const swipePower = Math.abs(offset.x) * velocity.x;
+
+    if (offset.x < -SWIPE_THRESHOLD || swipePower < -5000) {
+      paginate(1); // swipe left → next
+    } else if (offset.x > SWIPE_THRESHOLD || swipePower > 5000) {
+      paginate(-1); // swipe right → prev
+    }
+
+    // Pause autoplay after manual swipe
+    setIsPaused(true);
+    if (pauseTimeoutRef.current) clearTimeout(pauseTimeoutRef.current);
+    pauseTimeoutRef.current = setTimeout(() => setIsPaused(false), SWIPE_PAUSE_DURATION);
+  };
 
   return (
-    <div className="phone-mockup w-[300px] h-[600px] bg-white flex flex-col relative text-ink">
-      {/* Mockup Screen Content */}
-      <div className="w-full h-full bg-surface-50 p-4 flex flex-col relative">
-        {/* Status Bar */}
-        <div className="flex justify-between items-center text-ink text-xs font-bold mb-6 pt-2">
-          <span>9:41</span>
-          <div className="flex space-x-1 items-center">
-            <Wifi className="w-4 h-4" />
-            <Battery className="w-4 h-4" />
-          </div>
-        </div>
+    <div className="phone-mockup w-[280px] h-[580px] sm:w-[300px] sm:h-[620px] bg-white flex flex-col relative text-ink select-none">
+      {/* Phone Screen Area */}
+      <div className="w-full h-full overflow-hidden relative bg-surface-50">
+        <AnimatePresence initial={false} custom={direction} mode="popLayout">
+          <motion.div
+            key={currentIndex}
+            custom={direction}
+            variants={slideVariants}
+            initial="enter"
+            animate="center"
+            exit="exit"
+            transition={{
+              x: { type: "spring", stiffness: 350, damping: 35 },
+              opacity: { duration: 0.25 },
+            }}
+            drag="x"
+            dragConstraints={{ left: 0, right: 0 }}
+            dragElastic={0.15}
+            onDragEnd={handleDragEnd}
+            className="absolute inset-0 w-full h-full cursor-grab active:cursor-grabbing phone-carousel-slide"
+          >
+            <Image
+              src={screens[currentIndex].src}
+              alt={screens[currentIndex].alt}
+              fill
+              className="object-cover object-top"
+              sizes="300px"
+              draggable={false}
+              priority={currentIndex < 2}
+              unoptimized
+            />
+          </motion.div>
+        </AnimatePresence>
 
-        {/* App Content */}
-        <h3 className="text-2xl font-bold text-ink mb-1">Good Morning, Mary</h3>
-        <p className="text-ink-muted text-sm mb-6">Here is your schedule for today.</p>
-
-        {/* Alert Card */}
-        <div
-          className={`bg-white rounded-2xl p-4 shadow-sm border transition-all duration-500 mb-4 border-l-4 ${
-            medTaken
-              ? "border-accent border-l-accent opacity-75"
-              : "border-brand/20 border-l-brand"
-          }`}
-        >
-          <div className="flex justify-between items-start mb-2">
-            <span className={`font-bold ${medTaken ? "text-accent" : "text-brand"}`}>
-              10:00 AM
-            </span>
-            <span
-              className={`text-xs px-2 py-1 rounded-full transition-colors duration-500 ${
-                medTaken
-                  ? "bg-accent/10 text-accent"
-                  : "bg-brand/10 text-brand"
+        {/* Dot indicators */}
+        <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-20 flex items-center gap-1.5">
+          {screens.map((_, idx) => (
+            <button
+              key={idx}
+              onClick={() => goToSlide(idx)}
+              aria-label={`Go to screen ${idx + 1}`}
+              className={`rounded-full transition-all duration-300 ${
+                idx === currentIndex
+                  ? "w-5 h-2 bg-brand shadow-md"
+                  : "w-2 h-2 bg-white/70 hover:bg-white backdrop-blur-sm"
               }`}
-            >
-              Medication
-            </span>
-          </div>
-          <h4
-            className={`font-bold text-ink text-lg transition-all duration-500 ${
-              medTaken ? "line-through text-ink-muted" : ""
-            }`}
-          >
-            Take Blood Pressure Pill
-          </h4>
-          <button
-            onClick={() => setMedTaken(!medTaken)}
-            className={`w-full mt-3 py-2 rounded-lg font-semibold flex items-center justify-center transition-all duration-300 transform active:scale-95 ${
-              medTaken
-                ? "bg-accent text-white"
-                : "bg-brand text-white hover:bg-brand-dark"
-            }`}
-          >
-            <Check className="w-4 h-4 mr-1" />
-            {medTaken ? "Taken!" : "I took it"}
-          </button>
+            />
+          ))}
         </div>
 
-        {/* Schedule Card */}
-        <div className="bg-white rounded-2xl p-4 shadow-sm border border-surface-200 opacity-60">
-          <div className="flex justify-between items-start mb-1">
-            <span className="text-ink-muted font-bold">2:30 PM</span>
-            <span className="bg-surface-200 text-ink-muted text-xs px-2 py-1 rounded-full">
-              Call
-            </span>
-          </div>
-          <h4 className="font-bold text-ink">Call with Dr. Smith</h4>
-        </div>
-
-        {/* Bottom Nav */}
-        <div className="absolute bottom-0 left-0 w-full bg-white border-t border-surface-200 p-4 flex justify-between px-8 pb-8">
-          <div className="text-brand flex flex-col items-center cursor-pointer hover:scale-110 transition-transform">
-            <Home className="w-6 h-6" />
-          </div>
-          <div className="text-surface-300 flex flex-col items-center cursor-pointer hover:scale-110 transition-transform hover:text-brand">
-            <Bell className="w-6 h-6" />
-          </div>
-          <div className="text-surface-300 flex flex-col items-center cursor-pointer hover:scale-110 transition-transform hover:text-brand">
-            <User className="w-6 h-6" />
-          </div>
-        </div>
+        {/* Subtle gradient overlay at bottom for dot visibility */}
+        <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-black/20 to-transparent pointer-events-none z-10" />
       </div>
     </div>
   );
