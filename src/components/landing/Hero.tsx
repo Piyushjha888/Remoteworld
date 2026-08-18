@@ -1,8 +1,9 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { ArrowRight, ShieldCheck, HeartHandshake, Check, Users } from "lucide-react";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import Logo from "../ui/Logo";
 
 const fadeUp = (delay = 0) => ({
@@ -21,6 +22,25 @@ const scaleIn = (delay = 0) => ({
 });
 
 export default function Hero() {
+  const heroImages = [
+    "/homepageScreens/flow1.jpg",
+    "/homepageScreens/flow2.png",
+    "/homepageScreens/flow3.png",
+    "/homepageScreens/flow4.png",
+    "/homepageScreens/flow5.png",
+    "/homepageScreens/flow6.jpg",
+    "https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+  ];
+
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % heroImages.length);
+    }, 4500);
+    return () => clearInterval(timer);
+  }, [heroImages.length]);
+
   return (
     <section id="home" className="hero-gradient min-h-[90vh] flex items-start pt-24 sm:pt-32 lg:pt-40 relative overflow-hidden">
       {/* Top Left Logo */}
@@ -114,15 +134,42 @@ export default function Hero() {
           {...scaleIn(0.3)}
         >
           <div className="absolute inset-0 bg-brand/5 rounded-[2.5rem] transform rotate-3 scale-105"></div>
-          <Image
-            src="https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-            alt="Smiling mature adult looking at phone"
-            width={800}
-            height={800}
-            className="relative z-10 w-full h-full object-cover rounded-[2.5rem] shadow-2xl border-4 sm:border-8 border-white"
-            unoptimized
-            loading="eager"
-          />
+          <div className="relative z-10 w-full h-full rounded-[2.5rem] shadow-2xl border-4 sm:border-8 border-white overflow-hidden bg-white">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={currentSlide}
+                initial={{ opacity: 0, scale: 1.02 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.98 }}
+                transition={{ duration: 0.5, ease: "easeInOut" }}
+                className="w-full h-full relative"
+              >
+                <Image
+                  src={heroImages[currentSlide]}
+                  alt="Hero illustration slider"
+                  fill
+                  sizes="(max-width: 640px) 100vw, 500px"
+                  className="object-cover"
+                  unoptimized
+                  priority
+                />
+              </motion.div>
+            </AnimatePresence>
+
+            {/* Navigation Dots */}
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2 z-30 bg-black/40 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10">
+              {heroImages.map((_, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => setCurrentSlide(idx)}
+                  className={`w-2.5 h-2.5 rounded-full transition-all duration-300 cursor-pointer ${
+                    currentSlide === idx ? "bg-brand-light w-6" : "bg-white/60 hover:bg-white"
+                  }`}
+                  aria-label={`Go to slide ${idx + 1}`}
+                />
+              ))}
+            </div>
+          </div>
 
           {/* Floating UI Element — matches "Medication Taken" card from screenshots */}
           <motion.div

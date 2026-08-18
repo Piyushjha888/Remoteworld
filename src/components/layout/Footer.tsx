@@ -174,16 +174,11 @@ export default function Footer() {
           
           {/* Legal Links (1 column on mobile) */}
           <motion.div variants={staggerChild} className="col-span-1 text-left">
-            <h4 className="font-bold text-lg mb-5 text-surface-50">Legal</h4>
+            <h4 className="font-bold text-lg mb-5 text-surface-55 text-surface-50">Legal</h4>
             <ul className="space-y-3.5">
               <li>
-                <a href="#" className="text-surface-300 hover:text-brand hover:translate-x-1 transition-all duration-300 inline-block">
+                <a href="/privacy-policy" className="text-surface-300 hover:text-brand hover:translate-x-1 transition-all duration-300 inline-block">
                   Privacy Policy
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-surface-300 hover:text-brand hover:translate-x-1 transition-all duration-300 inline-block">
-                  Terms of Service
                 </a>
               </li>
               <li>

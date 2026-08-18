@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Script from "next/script";
+import ClickSpark from "@/components/ui/ClickSpark";
 import "./globals.css";
 
 const inter = Inter({
@@ -24,7 +25,15 @@ export default function RootLayout({
       className={`${inter.variable} h-full`}
     >
       <body className="font-sans antialiased text-ink text-lg leading-relaxed selection:bg-brand selection:text-white min-h-full flex flex-col">
-        {children}
+        <ClickSpark
+          sparkColor="#03A1AC"
+          sparkSize={10}
+          sparkRadius={15}
+          sparkCount={8}
+          duration={400}
+        >
+          {children}
+        </ClickSpark>
         {/* Lord Icon animated icon library */}
         <Script
           src="https://cdn.lordicon.com/lordicon.js"

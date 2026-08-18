@@ -8,21 +8,25 @@ import Download from "@/components/landing/Download";
 import FAQ from "@/components/landing/FAQ";
 import PartnerForm from "@/components/landing/PartnerForm";
 import SmoothScroll from "@/components/providers/SmoothScroll";
+import SplashScreen from "@/components/ui/SplashScreen";
 
 export default function Home() {
   return (
-    <SmoothScroll>
-      <Navbar />
-      <main className="pb-28">
-        <Hero />
-        <InteractiveQuiz />
-        <Features />
-        <StorySection />
-        <Download />
-        <PartnerForm />
-        <FAQ />
-      </main>
-      <Footer />
-    </SmoothScroll>
+    <SplashScreen>
+      <SmoothScroll>
+        <Navbar />
+        <main className="pb-28">
+          <Hero />
+          <InteractiveQuiz />
+          <Features />
+          <StorySection />
+          <Download />
+          <PartnerForm />
+          <FAQ />
+        </main>
+        <Footer />
+      </SmoothScroll>
+    </SplashScreen>
   );
 }
+
