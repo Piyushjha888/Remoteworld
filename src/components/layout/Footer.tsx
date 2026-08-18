@@ -1,6 +1,6 @@
 "use client";
 
-import { Activity, ShieldCheck } from "lucide-react";
+import { ShieldCheck } from "lucide-react";
 import { motion } from "framer-motion";
 import StaggerContainer, { staggerChild } from "../ui/StaggerContainer";
 import AnimatedSection from "../ui/AnimatedSection";

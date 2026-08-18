@@ -2,29 +2,8 @@
 
 import { useRef } from "react";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
-import { Check, Users2, Activity, ShieldCheck, Sun, Moon, type LucideIcon } from "lucide-react";
+import { Check, Users2, Activity, ShieldCheck, Sun, Moon } from "lucide-react";
 import AnimatedSection from "../ui/AnimatedSection";
-
-// Centered icon badge — rounded-2xl bg tile with icon perfectly centered inside
-function IconBadge({
-  Icon,
-  bgLight,
-  iconColor,
-  size = "md",
-}: {
-  Icon: LucideIcon;
-  bgLight: string;
-  iconColor: string;
-  size?: "sm" | "md";
-}) {
-  const dim = size === "sm" ? "w-10 h-10" : "w-14 h-14";
-  const iconDim = size === "sm" ? "w-5 h-5" : "w-6 h-6";
-  return (
-    <div className={`${dim} flex-shrink-0 rounded-2xl ${bgLight} flex items-center justify-center`}>
-      <Icon className={`${iconDim} ${iconColor}`} />
-    </div>
-  );
-}
 
 export default function StorySection() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -104,13 +83,13 @@ export default function StorySection() {
           </div>
           <div className="space-y-3">
             <div className="flex items-center justify-between text-sm">
-              <span className="text-ink-muted">Mom's Checklist</span>
+              <span className="text-ink-muted">Mom&apos;s Checklist</span>
               <span className="font-semibold text-accent-alt flex items-center gap-1">
                 <Check className="w-4 h-4" /> All Done
               </span>
             </div>
             <div className="bg-support-blue/5 p-3 rounded-xl border border-support-blue/10 text-xs text-support-blue font-medium text-center">
-              "Notification sent to Sarah &amp; John at 1:12 PM"
+              &quot;Notification sent to Sarah &amp; John at 1:12 PM&quot;
             </div>
           </div>
         </div>

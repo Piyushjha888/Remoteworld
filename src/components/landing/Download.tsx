@@ -1,6 +1,6 @@
 "use client";
 
-import { CheckCircle2, Apple, Play } from "lucide-react";
+import { CheckCircle2, Play } from "lucide-react";
 import PhoneMockup from "../ui/PhoneMockup";
 import { motion } from "framer-motion";
 import AnimatedSection from "../ui/AnimatedSection";
@@ -68,21 +68,18 @@ export default function Download() {
 
           {/* Download Buttons with spring scale hover triggers */}
           <motion.div
-            className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-6"
+            className="flex flex-col sm:flex-row items-center gap-6 justify-center lg:justify-start pt-6"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.5 }}
           >
-            {/* App Store Button */}
-
-
             {/* Google Play Button */}
             <motion.a
               href="https://play.google.com/store/apps/details?id=com.application.remoteward"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-ink hover:bg-black text-white px-6 py-3 rounded-xl flex items-center justify-center space-x-3 border border-surface-400/30 cursor-pointer"
+              className="bg-ink hover:bg-black text-white px-6 py-3 rounded-xl flex items-center justify-center space-x-3 border border-surface-400/30 cursor-pointer h-16 w-full sm:w-auto"
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.98 }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
@@ -93,6 +90,43 @@ export default function Download() {
                 <div className="text-lg font-bold leading-none">Google Play</div>
               </div>
             </motion.a>
+
+            {/* TODO: Replace this placeholder SVG QR code with the real Play Store QR code image before production */}
+            {/* QR Code Container */}
+            <div className="hidden sm:flex items-center bg-white/10 border border-white/20 p-2.5 rounded-xl space-x-3 max-w-xs h-16">
+              <div className="w-11 h-11 bg-white p-1 rounded-lg flex-shrink-0 flex items-center justify-center">
+                <svg viewBox="0 0 100 100" className="w-full h-full text-black" fill="currentColor">
+                  {/* Square corner indicators */}
+                  <rect x="0" y="0" width="30" height="30" />
+                  <rect x="5" y="5" width="20" height="20" fill="white" />
+                  <rect x="10" y="10" width="10" height="10" />
+
+                  <rect x="70" y="0" width="30" height="30" />
+                  <rect x="75" y="5" width="20" height="20" fill="white" />
+                  <rect x="80" y="10" width="10" height="10" />
+
+                  <rect x="0" y="70" width="30" height="30" />
+                  <rect x="5" y="75" width="20" height="20" fill="white" />
+                  <rect x="10" y="80" width="10" height="10" />
+
+                  {/* Random pixels */}
+                  <rect x="40" y="0" width="10" height="10" />
+                  <rect x="50" y="10" width="10" height="20" />
+                  <rect x="40" y="40" width="10" height="10" />
+                  <rect x="50" y="50" width="10" height="10" />
+                  <rect x="80" y="40" width="20" height="10" />
+                  <rect x="70" y="50" width="10" height="10" />
+                  <rect x="70" y="70" width="10" height="10" />
+                  <rect x="80" y="80" width="10" height="10" />
+                  <rect x="60" y="90" width="10" height="10" />
+                  <rect x="90" y="90" width="10" height="10" />
+                </svg>
+              </div>
+              <div className="text-left leading-none">
+                <p className="text-xs font-bold text-white">Scan to download</p>
+                <p className="text-[10px] text-surface-200 mt-1">Camera quick scan</p>
+              </div>
+            </div>
           </motion.div>
         </div>
 

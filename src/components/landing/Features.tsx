@@ -3,7 +3,8 @@
 import { useState } from "react";
 import { ChevronDown, CalendarClock, Users2, Activity, type LucideIcon } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import StaggerContainer, { staggerChild } from "../ui/StaggerContainer";
+import { staggerParent, staggerChild } from "../ui/StaggerContainer";
+import { useMobileCarousel, MobileCarouselDots } from "../ui/MobileCarousel";
 import AnimatedSection from "../ui/AnimatedSection";
 
 // Icon badge: large rounded-2xl background square with icon perfectly centered inside
@@ -25,6 +26,7 @@ function IconBadge({
 
 export default function Features() {
   const [expandedCard, setExpandedCard] = useState<number | null>(null);
+  const { scrollRef, activeIndex } = useMobileCarousel();
 
   const toggleExpand = (cardIndex: number) => {
     setExpandedCard(expandedCard === cardIndex ? null : cardIndex);
@@ -80,8 +82,15 @@ export default function Features() {
           </div>
         </AnimatedSection>
 
-        {/* Staggered Feature Cards Grid */}
-        <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-10">
+        {/* Feature Cards — horizontal carousel on mobile, grid on md+ */}
+        <motion.div
+          ref={scrollRef}
+          variants={staggerParent()}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-60px" }}
+          className="mobile-carousel md:grid md:grid-cols-3 gap-10"
+        >
           {featureDetails.map((feat, idx) => {
             const isExpanded = expandedCard === idx;
             return (
@@ -147,8 +156,10 @@ export default function Features() {
               </motion.div>
             );
           })}
-        </StaggerContainer>
+        </motion.div>
+        <MobileCarouselDots count={featureDetails.length} activeIndex={activeIndex} />
       </div>
     </section>
   );
 }
+

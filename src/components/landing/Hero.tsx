@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { ArrowRight, ShieldCheck, HeartHandshake, Check, Users } from "lucide-react";
+import { ArrowRight, ShieldCheck, HeartHandshake, Check } from "lucide-react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import Logo from "../ui/Logo";

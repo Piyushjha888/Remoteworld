@@ -106,7 +106,7 @@ export default function PartnerForm() {
         setStatus("error");
         setErrorMessage(result.error || "Something went wrong. Please try again.");
       }
-    } catch (error) {
+    } catch {
       setStatus("error");
       setErrorMessage("Network error. Please check your connection.");
     }

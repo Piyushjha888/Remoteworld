@@ -274,3 +274,60 @@ html.lenis, html.lenis body {
   font-weight: 500;
 }
 
+/* ═══════════════════════════════════════════════════════
+   Mobile-only Horizontal Scroll Carousel
+   Active below md breakpoint (< 768px).
+   Desktop/tablet layouts are NOT affected.
+   ═══════════════════════════════════════════════════════ */
+@media (max-width: 767px) {
+  .mobile-carousel {
+    display: flex !important;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scroll-padding-left: 1rem;
+    gap: 1rem;
+    padding-bottom: 0.5rem;
+
+    /* Hide scrollbar but keep scroll */
+    scrollbar-width: none;              /* Firefox */
+    -ms-overflow-style: none;           /* IE / Edge */
+  }
+  .mobile-carousel::-webkit-scrollbar {
+    display: none;                      /* Chrome / Safari */
+  }
+
+  .mobile-carousel > * {
+    scroll-snap-align: start;
+    flex-shrink: 0;
+    width: 80vw;
+    max-width: 320px;
+  }
+
+  /* Dot indicator strip beneath carousel */
+  .mobile-dots {
+    display: flex;
+    justify-content: center;
+    gap: 0.375rem;
+    padding-top: 1rem;
+  }
+  .mobile-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 9999px;
+    background-color: #D8D8D8;
+    transition: all 0.3s ease;
+  }
+  .mobile-dot.active {
+    width: 24px;
+    background-color: #03A1AC;
+  }
+}
+
+/* Hide dots on md+ screens */
+@media (min-width: 768px) {
+  .mobile-dots {
+    display: none !important;
+  }
+}
+

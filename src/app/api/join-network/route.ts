@@ -68,10 +68,11 @@ export async function POST(request: Request) {
     });
 
     return NextResponse.json({ success: true, data });
-  } catch (error: any) {
+  } catch (error) {
     console.error("Error sending email via Resend:", error);
+    const errorMessage = error instanceof Error ? error.message : "Failed to submit request";
     return NextResponse.json(
-      { error: error.message || "Failed to submit request" },
+      { error: errorMessage },
       { status: 500 }
     );
   }

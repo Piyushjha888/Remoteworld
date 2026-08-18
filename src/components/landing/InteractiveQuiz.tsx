@@ -145,7 +145,7 @@ export default function InteractiveQuiz() {
                       RemoteWard is perfect for you!
                     </h3>
                     <p className="text-lg text-ink-muted mb-8 max-w-xl mx-auto">
-                      We've tailored the app to make daily routines stress-free and keep everyone in the loop effortlessly. The design is large, clear, and easy to navigate.
+                      We&apos;ve tailored the app to make daily routines stress-free and keep everyone in the loop effortlessly. The design is large, clear, and easy to navigate.
                     </p>
                     <motion.a
                       href="https://play.google.com/store/apps/details?id=com.application.remoteward"

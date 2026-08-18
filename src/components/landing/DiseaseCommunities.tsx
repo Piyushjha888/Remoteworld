@@ -1,0 +1,114 @@
+"use client";
+
+import { Heart, Activity, Brain, Shield, UserCheck, Stethoscope } from "lucide-react";
+import { motion } from "framer-motion";
+import AnimatedSection from "../ui/AnimatedSection";
+import { staggerParent, staggerChild } from "../ui/StaggerContainer";
+import { useMobileCarousel, MobileCarouselDots } from "../ui/MobileCarousel";
+
+export default function DiseaseCommunities() {
+  const { scrollRef, activeIndex } = useMobileCarousel();
+
+  const communities = [
+    {
+      title: "Sickle Cell Disease (SCD)",
+      desc: "Specialized SCD tracking with pain logs, hydration indicators, and crises event reporting.",
+      Icon: Stethoscope,
+      bg: "bg-brand/10",
+      color: "text-brand",
+    },
+    {
+      title: "Diabetes Care",
+      desc: "Logging tools for blood glucose readings, insulin targets, and clinical HbA1c summaries.",
+      Icon: Activity,
+      bg: "bg-support-blue/15",
+      color: "text-support-blue",
+    },
+    {
+      title: "Heart Health",
+      desc: "Systolic/diastolic blood pressure logging, heart rate trends, and low-sodium diet checklists.",
+      Icon: Heart,
+      bg: "bg-alert/10",
+      color: "text-alert",
+    },
+    {
+      title: "Parkinson's Support",
+      desc: "Simplified daily movement checklists, tremor trackers, and physical therapy reminders.",
+      Icon: Brain,
+      bg: "bg-support-purple/20",
+      color: "text-support-blue",
+    },
+    {
+      title: "Oncology Care",
+      desc: "Symptom tracking logs, chemo/radiation reminders, and supportive emotional wellness diaries.",
+      Icon: Shield,
+      bg: "bg-accent/15",
+      color: "text-accent-alt",
+    },
+    {
+      title: "Chronic Care Circle",
+      desc: "Designed for seniors managing multiple co-morbidities with extra-large text targets.",
+      Icon: UserCheck,
+      bg: "bg-highlight/15",
+      color: "text-highlight-dark",
+    },
+  ];
+
+  return (
+    <section id="communities" className="py-16 sm:py-24 bg-white overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        {/* Header */}
+        <AnimatedSection direction="up" className="text-center max-w-3xl mx-auto mb-16">
+          <h2 className="text-brand font-semibold tracking-wide uppercase text-sm mb-3">
+            Supported Modules
+          </h2>
+          <h3 className="text-4xl md:text-5xl font-bold text-ink mb-6">
+            Tailored care for every chronic journey.
+          </h3>
+          <p className="text-xl text-ink-muted">
+            We don&apos;t believe in one-size-fits-all. RemoteWard adapts its checklist templates to fit specific medical needs.
+          </p>
+        </AnimatedSection>
+
+        {/* Communities — horizontal carousel on mobile, grid on md+ */}
+        <motion.div
+          ref={scrollRef}
+          variants={staggerParent()}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-60px" }}
+          className="mobile-carousel md:grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+        >
+          {communities.map((comm, idx) => {
+            const Icon = comm.Icon;
+            return (
+              <motion.div
+                key={idx}
+                variants={staggerChild}
+                className="bg-surface-50 rounded-3xl p-8 border border-surface-200/60 shadow-sm hover:shadow-md hover:bg-white transition-all duration-300 flex flex-col justify-between"
+                whileHover={{ y: -6, scale: 1.01 }}
+              >
+                <div>
+                  {/* Icon Badge */}
+                  <div className={`w-14 h-14 rounded-2xl ${comm.bg} flex items-center justify-center mb-6`}>
+                    <Icon className={`w-6 h-6 ${comm.color}`} />
+                  </div>
+
+                  <h4 className="text-2xl font-bold text-ink mb-3">{comm.title}</h4>
+                  <p className="text-ink-muted text-base leading-relaxed">{comm.desc}</p>
+                </div>
+
+                <div className="mt-6 pt-4 border-t border-surface-200/40 text-xs font-bold text-brand uppercase tracking-wider">
+                  Template Included
+                </div>
+              </motion.div>
+            );
+          })}
+        </motion.div>
+        <MobileCarouselDots count={communities.length} activeIndex={activeIndex} />
+      </div>
+    </section>
+  );
+}
+
