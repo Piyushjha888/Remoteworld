@@ -64,19 +64,19 @@ export default function Features() {
   ];
 
   return (
-    <section id="features" className="py-16 sm:py-24 bg-surface-50 overflow-hidden">
+    <section id="features" className="py-14 sm:py-20 lg:py-24 bg-surface-50 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Header Section */}
         <AnimatedSection direction="up">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className="text-brand font-semibold tracking-wide uppercase text-sm mb-3">
+          <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+            <h2 className="text-brand font-semibold tracking-wide uppercase text-xs sm:text-sm mb-2 sm:mb-3">
               Core Benefits
             </h2>
-            <h3 className="text-4xl md:text-5xl font-bold text-ink mb-6">
+            <h3 className="text-3xl sm:text-4xl md:text-5xl font-bold text-ink mb-4 sm:mb-6">
               Designed with empathy, built for clarity.
             </h3>
-            <p className="text-xl text-ink-muted">
+            <p className="text-base sm:text-lg md:text-xl text-ink-muted">
               We removed the clutter so you can focus on what matters: your health and your loved ones.
             </p>
           </div>
@@ -89,7 +89,7 @@ export default function Features() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, margin: "-60px" }}
-          className="mobile-carousel md:grid md:grid-cols-3 gap-10"
+          className="mobile-carousel md:grid md:grid-cols-3 gap-6 sm:gap-8 lg:gap-10"
         >
           {featureDetails.map((feat, idx) => {
             const isExpanded = expandedCard === idx;
@@ -97,7 +97,7 @@ export default function Features() {
               <motion.div
                 key={idx}
                 variants={staggerChild}
-                className="bg-white rounded-3xl p-8 shadow-sm border border-surface-100 group relative overflow-hidden flex flex-col justify-between"
+                className="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-surface-100 group relative overflow-hidden flex flex-col justify-between"
                 whileHover={{ y: -8, scale: 1.02, boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)" }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
               >
@@ -114,15 +114,15 @@ export default function Features() {
                 )}
 
                 <div>
-                  {/* Layered icon badge (matching reference screenshots) */}
+                  {/* Layered icon badge */}
                   <IconBadge
                     Icon={feat.Icon}
                     bgLight={feat.bgLight}
                     iconColor={feat.iconColor}
                   />
 
-                  <h4 className="text-2xl font-bold text-ink mb-4">{feat.title}</h4>
-                  <p className="text-ink-muted text-lg mb-6 leading-relaxed">
+                  <h4 className="text-xl sm:text-2xl font-bold text-ink mb-3 sm:mb-4">{feat.title}</h4>
+                  <p className="text-ink-muted text-sm sm:text-base mb-4 sm:mb-6 leading-relaxed">
                     {feat.description}
                   </p>
 
@@ -134,7 +134,7 @@ export default function Features() {
                         animate={{ height: "auto", opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
                         transition={{ duration: 0.4, ease: [0.25, 0.4, 0.25, 1] as const }}
-                        className="overflow-hidden text-ink-muted/80 text-base mb-6 border-t border-surface-100 pt-4"
+                        className="overflow-hidden text-ink-muted/80 text-xs sm:text-sm mb-4 sm:mb-6 border-t border-surface-100 pt-3.5 sm:pt-4 leading-relaxed"
                       >
                         {feat.extra}
                       </motion.div>
@@ -144,7 +144,7 @@ export default function Features() {
 
                 <button
                   onClick={() => toggleExpand(idx)}
-                  className={`font-semibold flex items-center transition-colors cursor-pointer mt-4 ${feat.btnClass}`}
+                  className={`font-semibold flex items-center transition-colors cursor-pointer mt-3 sm:mt-4 text-sm sm:text-base ${feat.btnClass}`}
                   aria-label={`Learn more about ${feat.title}`}
                 >
                   {isExpanded ? "Show Less" : "Read More"}{" "}

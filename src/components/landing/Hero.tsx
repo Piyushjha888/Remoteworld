@@ -42,9 +42,9 @@ export default function Hero() {
   }, [heroImages.length]);
 
   return (
-    <section id="home" className="hero-gradient min-h-[90vh] flex items-start pt-24 sm:pt-32 lg:pt-40 relative overflow-hidden">
+    <section id="home" className="hero-gradient min-h-[85vh] lg:min-h-[90vh] flex items-start pt-20 sm:pt-28 lg:pt-36 pb-8 sm:pb-12 relative overflow-hidden">
       {/* Top Left Logo */}
-      <div className="absolute top-6 left-6 lg:top-8 lg:left-12 z-50">
+      <div className="absolute top-5 left-4 sm:top-6 sm:left-6 lg:top-8 lg:left-12 z-50">
         <Logo textClass="text-2xl sm:text-3xl" />
       </div>
 
@@ -58,12 +58,12 @@ export default function Hero() {
       <div className="absolute top-20 left-10 w-32 h-32 bg-support-purple opacity-20 rounded-full blur-2xl"></div>
       <div className="absolute bottom-20 right-10 w-64 h-64 bg-brand opacity-10 rounded-full blur-3xl"></div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12 relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-8 sm:pb-12 relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
         {/* Hero Text */}
-        <div className="space-y-6 sm:space-y-8 max-w-2xl mt-4 lg:mt-0">
+        <div className="space-y-5 sm:space-y-7 max-w-2xl mt-4 lg:mt-0">
           {/* Title */}
           <motion.h1
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight text-ink"
+            className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight text-ink"
             {...fadeUp(0.1)}
           >
             Healthcare, <br />
@@ -86,7 +86,7 @@ export default function Hero() {
 
           {/* CTA Buttons */}
           <motion.div
-            className="flex flex-col sm:flex-row gap-4 pt-2"
+            className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-2 w-full sm:w-auto"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.6, ease: [0.25, 0.4, 0.25, 1] }}
@@ -95,7 +95,7 @@ export default function Hero() {
               href="https://play.google.com/store/apps/details?id=com.application.remoteward"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-highlight hover:bg-highlight-dark text-ink font-bold text-base sm:text-lg px-6 py-4 rounded-xl text-center shadow-lg flex items-center justify-center"
+              className="bg-highlight hover:bg-highlight-dark text-ink font-bold text-base sm:text-lg px-6 py-3.5 sm:py-4 rounded-xl text-center shadow-lg flex items-center justify-center cursor-pointer"
               whileHover={{ scale: 1.04, y: -3 }}
               whileTap={{ scale: 0.97 }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
@@ -104,26 +104,26 @@ export default function Hero() {
               <ArrowRight className="w-5 h-5 ml-2" />
             </motion.a>
             <motion.a
-              href="#interactive-tool"
-              className="bg-white border-2 border-brand text-brand hover:bg-brand hover:text-white font-bold text-base sm:text-lg px-6 py-4 rounded-xl text-center transition-colors flex items-center justify-center"
+              href="#how-it-works"
+              className="bg-white border-2 border-brand text-brand hover:bg-brand hover:text-white font-bold text-base sm:text-lg px-6 py-3.5 sm:py-4 rounded-xl text-center transition-colors flex items-center justify-center cursor-pointer shadow-sm"
               whileHover={{ scale: 1.04, y: -3 }}
               whileTap={{ scale: 0.97 }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
             >
-              Is this for me?
+              How It Works
             </motion.a>
           </motion.div>
 
           {/* Trust Signals */}
           <motion.div
-            className="pt-4 flex flex-wrap items-center gap-x-6 gap-y-3 text-xs sm:text-sm text-ink-muted"
+            className="pt-2 sm:pt-4 flex flex-wrap items-center gap-x-6 gap-y-2.5 text-xs sm:text-sm text-ink-muted"
             {...fadeUp(0.8)}
           >
             <div className="flex items-center">
-              <ShieldCheck className="w-5 h-5 text-accent-alt mr-1.5" /> Secure & Private
+              <ShieldCheck className="w-4.5 h-4.5 sm:w-5 sm:h-5 text-accent-alt mr-1.5" /> Secure & Private
             </div>
             <div className="flex items-center">
-              <HeartHandshake className="w-5 h-5 text-brand mr-1.5" /> Loved by Families
+              <HeartHandshake className="w-4.5 h-4.5 sm:w-5 sm:h-5 text-brand mr-1.5" /> Loved by Families
             </div>
           </motion.div>
         </div>
@@ -150,8 +150,8 @@ export default function Hero() {
                   fill
                   sizes="(max-width: 640px) 100vw, 500px"
                   className="object-cover"
-                  unoptimized
-                  priority
+                  priority={currentSlide === 0}
+                  loading={currentSlide === 0 ? "eager" : "lazy"}
                 />
               </motion.div>
             </AnimatePresence>

@@ -131,8 +131,8 @@ export default function PhoneMockup() {
               className="object-cover object-top"
               sizes="300px"
               draggable={false}
-              priority={currentIndex < 2}
-              unoptimized
+              priority={currentIndex === 0}
+              loading={currentIndex === 0 ? "eager" : "lazy"}
             />
           </motion.div>
         </AnimatePresence>

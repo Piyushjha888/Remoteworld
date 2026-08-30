@@ -286,8 +286,11 @@ html.lenis, html.lenis body {
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
     scroll-padding-left: 1rem;
+    scroll-padding-right: 1rem;
     gap: 1rem;
-    padding-bottom: 0.5rem;
+    padding-bottom: 0.75rem;
+    padding-left: 0.25rem;
+    padding-right: 0.25rem;
 
     /* Hide scrollbar but keep scroll */
     scrollbar-width: none;              /* Firefox */
@@ -298,9 +301,9 @@ html.lenis, html.lenis body {
   }
 
   .mobile-carousel > * {
-    scroll-snap-align: start;
+    scroll-snap-align: center;
     flex-shrink: 0;
-    width: 80vw;
+    width: 82vw;
     max-width: 320px;
   }
 

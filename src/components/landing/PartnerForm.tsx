@@ -124,28 +124,28 @@ export default function PartnerForm() {
   return (
     <>
       {/* ─── Section with Title + Description + CTA Button ─── */}
-      <section id="partner-with-us" className="py-24 relative overflow-hidden bg-surface-50/50">
+      <section id="partner-with-us" className="py-14 sm:py-20 lg:py-24 relative overflow-hidden bg-surface-50/50">
         {/* Decorative blurry backgrounds */}
         <div className="absolute top-1/4 -left-1/4 w-96 h-96 bg-brand/10 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute bottom-1/4 -right-1/4 w-96 h-96 bg-accent/10 rounded-full blur-3xl pointer-events-none" />
 
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <AnimatedSection className="text-center mb-12">
-            <h2 className="text-4xl sm:text-5xl font-bold text-ink mb-4">
+          <AnimatedSection className="text-center mb-8 sm:mb-12">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-ink mb-3 sm:mb-4">
               Partner Your <span className="text-brand">Hospital or Clinic</span>
             </h2>
-            <p className="text-lg text-ink-muted max-w-2xl mx-auto mb-10">
+            <p className="text-base sm:text-lg text-ink-muted max-w-2xl mx-auto mb-8 sm:mb-10">
               Empower your patients with seamless virtual care coordination. Join the RemoteWard provider network and extend your care loop today.
             </p>
 
             {/* ── Partner Now Button ── */}
             <motion.button
               onClick={() => setIsOpen(true)}
-              className="inline-flex items-center gap-3 bg-brand hover:bg-brand-dark text-white font-bold text-lg px-10 py-5 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer group"
+              className="inline-flex items-center gap-3 bg-brand hover:bg-brand-dark text-white font-bold text-base sm:text-lg px-8 sm:px-10 py-4 sm:py-5 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer group"
               whileHover={{ scale: 1.04, y: -2 }}
               whileTap={{ scale: 0.97 }}
             >
-              <Handshake className="w-6 h-6 transition-transform duration-300 group-hover:rotate-12" />
+              <Handshake className="w-5 h-5 sm:w-6 sm:h-6 transition-transform duration-300 group-hover:rotate-12" />
               Partner Now
               <motion.span
                 className="inline-block"
@@ -188,12 +188,12 @@ export default function PartnerForm() {
 
             {/* Centering scroll wrapper */}
             <div 
-              className="min-h-full flex items-center justify-center p-4 sm:p-6 relative z-10 cursor-pointer"
+              className="min-h-full flex items-center justify-center p-3 sm:p-6 relative z-10 cursor-pointer"
               onClick={handleClose}
             >
               {/* Modal Card */}
               <motion.div
-                className="relative w-full max-w-3xl bg-white/95 backdrop-blur-xl border border-surface-200 shadow-2xl rounded-3xl p-8 sm:p-12 my-8 cursor-default"
+                className="relative w-full max-w-3xl bg-white/95 backdrop-blur-xl border border-surface-200 shadow-2xl rounded-3xl p-6 sm:p-8 md:p-12 my-6 sm:my-8 cursor-default"
                 initial={{ opacity: 0, scale: 0.85, y: 50 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.85, y: 50 }}
@@ -201,11 +201,11 @@ export default function PartnerForm() {
                 onClick={(e) => e.stopPropagation()}
               >
                 {/* Modal Header */}
-                <div className="text-center mb-8">
+                <div className="text-center mb-6 sm:mb-8">
                   <h3 className="text-2xl sm:text-3xl font-bold text-ink">
                     Join Our <span className="text-brand">Network</span>
                   </h3>
-                  <p className="text-ink-muted mt-2">Fill in your details and we&apos;ll get back within 24–48 hours.</p>
+                  <p className="text-ink-muted text-sm sm:text-base mt-2">Fill in your details and we&apos;ll get back within 24–48 hours.</p>
                 </div>
 
                 <AnimatePresence mode="wait">

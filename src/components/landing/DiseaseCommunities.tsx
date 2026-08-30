@@ -55,18 +55,18 @@ export default function DiseaseCommunities() {
   ];
 
   return (
-    <section id="communities" className="py-16 sm:py-24 bg-white overflow-hidden">
+    <section id="communities" className="py-14 sm:py-20 lg:py-24 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
-        <AnimatedSection direction="up" className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-brand font-semibold tracking-wide uppercase text-sm mb-3">
+        <AnimatedSection direction="up" className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+          <h2 className="text-brand font-semibold tracking-wide uppercase text-xs sm:text-sm mb-2 sm:mb-3">
             Supported Modules
           </h2>
-          <h3 className="text-4xl md:text-5xl font-bold text-ink mb-6">
+          <h3 className="text-3xl sm:text-4xl md:text-5xl font-bold text-ink mb-4 sm:mb-6">
             Tailored care for every chronic journey.
           </h3>
-          <p className="text-xl text-ink-muted">
+          <p className="text-base sm:text-lg md:text-xl text-ink-muted">
             We don&apos;t believe in one-size-fits-all. RemoteWard adapts its checklist templates to fit specific medical needs.
           </p>
         </AnimatedSection>
@@ -78,7 +78,7 @@ export default function DiseaseCommunities() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, margin: "-60px" }}
-          className="mobile-carousel md:grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+          className="mobile-carousel md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"
         >
           {communities.map((comm, idx) => {
             const Icon = comm.Icon;
@@ -86,20 +86,20 @@ export default function DiseaseCommunities() {
               <motion.div
                 key={idx}
                 variants={staggerChild}
-                className="bg-surface-50 rounded-3xl p-8 border border-surface-200/60 shadow-sm hover:shadow-md hover:bg-white transition-all duration-300 flex flex-col justify-between"
+                className="bg-surface-50 rounded-3xl p-6 sm:p-8 border border-surface-200/60 shadow-sm hover:shadow-md hover:bg-white transition-all duration-300 flex flex-col justify-between"
                 whileHover={{ y: -6, scale: 1.01 }}
               >
                 <div>
                   {/* Icon Badge */}
-                  <div className={`w-14 h-14 rounded-2xl ${comm.bg} flex items-center justify-center mb-6`}>
-                    <Icon className={`w-6 h-6 ${comm.color}`} />
+                  <div className={`w-12 h-12 sm:w-14 sm:h-14 rounded-2xl ${comm.bg} flex items-center justify-center mb-5 sm:mb-6`}>
+                    <Icon className={`w-5 h-5 sm:w-6 sm:h-6 ${comm.color}`} />
                   </div>
 
-                  <h4 className="text-2xl font-bold text-ink mb-3">{comm.title}</h4>
-                  <p className="text-ink-muted text-base leading-relaxed">{comm.desc}</p>
+                  <h4 className="text-xl sm:text-2xl font-bold text-ink mb-2 sm:mb-3">{comm.title}</h4>
+                  <p className="text-ink-muted text-sm sm:text-base leading-relaxed">{comm.desc}</p>
                 </div>
 
-                <div className="mt-6 pt-4 border-t border-surface-200/40 text-xs font-bold text-brand uppercase tracking-wider">
+                <div className="mt-5 sm:mt-6 pt-3.5 sm:pt-4 border-t border-surface-200/40 text-xs font-bold text-brand uppercase tracking-wider">
                   Template Included
                 </div>
               </motion.div>

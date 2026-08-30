@@ -118,13 +118,13 @@ export default function Navbar() {
 
       const faqTop = getAbsoluteTop("faq");
       const featuresTop = getAbsoluteTop("features");
-      const quizTop = getAbsoluteTop("interactive-tool");
+      const howItWorksTop = getAbsoluteTop("how-it-works");
 
       if (scrollPos >= faqTop) {
         setRawActiveSection("faq");
       } else if (scrollPos >= featuresTop) {
         setRawActiveSection("features");
-      } else if (scrollPos >= quizTop) {
+      } else if (scrollPos >= howItWorksTop) {
         setRawActiveSection("how-it-works");
       } else {
         setRawActiveSection("home");

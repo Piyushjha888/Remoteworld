@@ -150,7 +150,7 @@ export default function Footer() {
             <h4 className="font-bold text-lg mb-5 text-surface-50">Quick Links</h4>
             <ul className="space-y-3.5">
               <li>
-                <a href="#" className="text-surface-300 hover:text-brand hover:translate-x-1 transition-all duration-300 inline-block">
+                <a href="#why-we-started" className="text-surface-300 hover:text-brand hover:translate-x-1 transition-all duration-300 inline-block">
                   About Us
                 </a>
               </li>
@@ -165,7 +165,7 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <a href="#" className="text-surface-300 hover:text-brand hover:translate-x-1 transition-all duration-300 inline-block">
+                <a href="#partner-with-us" className="text-surface-300 hover:text-brand hover:translate-x-1 transition-all duration-300 inline-block">
                   Contact Support
                 </a>
               </li>
@@ -174,7 +174,7 @@ export default function Footer() {
           
           {/* Legal Links (1 column on mobile) */}
           <motion.div variants={staggerChild} className="col-span-1 text-left">
-            <h4 className="font-bold text-lg mb-5 text-surface-55 text-surface-50">Legal</h4>
+            <h4 className="font-bold text-lg mb-5 text-surface-50">Legal</h4>
             <ul className="space-y-3.5">
               <li>
                 <a href="/privacy-policy" className="text-surface-300 hover:text-brand hover:translate-x-1 transition-all duration-300 inline-block">
@@ -182,7 +182,7 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <a href="#" className="text-surface-300 hover:text-brand hover:translate-x-1 transition-all duration-300 inline-block">
+                <a href="/privacy-policy" className="text-surface-300 hover:text-brand hover:translate-x-1 transition-all duration-300 inline-block">
                   HIPAA Compliance
                 </a>
               </li>
