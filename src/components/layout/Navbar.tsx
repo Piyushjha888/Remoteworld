@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Users, Handshake, HelpCircle, type LucideIcon } from "lucide-react";
+import { Home, Users, Handshake, HelpCircle, type LucideIcon } from "lucide-react";
 import { motion } from "framer-motion";
 import { usePathname, useRouter } from "next/navigation";
 import Image from "next/image";
@@ -195,7 +195,7 @@ export default function Navbar() {
         <NavCircle
           id="home"
           label="Home"
-          iconSrc="/logos/home.jpg"
+          Icon={Home}
           active={activeSection === "home"}
           onClick={handleNav}
         />
