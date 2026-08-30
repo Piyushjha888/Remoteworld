@@ -1,19 +1,29 @@
 "use client";
 
-import { Heart, Activity, Brain, Shield, UserCheck, Stethoscope } from "lucide-react";
+import { Heart, Activity, Brain, Shield, UserCheck, Stethoscope, type LucideIcon } from "lucide-react";
 import { motion } from "framer-motion";
 import AnimatedSection from "../ui/AnimatedSection";
 import { staggerParent, staggerChild } from "../ui/StaggerContainer";
 import { useMobileCarousel, MobileCarouselDots } from "../ui/MobileCarousel";
+import Image from "next/image";
+
+interface CommunityItem {
+  title: string;
+  desc: string;
+  Icon?: LucideIcon;
+  iconSrc?: string;
+  bg: string;
+  color: string;
+}
 
 export default function DiseaseCommunities() {
   const { scrollRef, activeIndex } = useMobileCarousel();
 
-  const communities = [
+  const communities: CommunityItem[] = [
     {
       title: "Sickle Cell Disease (SCD)",
       desc: "Specialized SCD tracking with pain logs, hydration indicators, and crises event reporting.",
-      Icon: Stethoscope,
+      iconSrc: "/logos/sickle-cell.jpg",
       bg: "bg-brand/10",
       color: "text-brand",
     },
@@ -27,7 +37,7 @@ export default function DiseaseCommunities() {
     {
       title: "Heart Health",
       desc: "Systolic/diastolic blood pressure logging, heart rate trends, and low-sodium diet checklists.",
-      Icon: Heart,
+      iconSrc: "/logos/health.jpg",
       bg: "bg-alert/10",
       color: "text-alert",
     },
@@ -91,8 +101,19 @@ export default function DiseaseCommunities() {
               >
                 <div>
                   {/* Icon Badge */}
-                  <div className={`w-12 h-12 sm:w-14 sm:h-14 rounded-2xl ${comm.bg} flex items-center justify-center mb-5 sm:mb-6`}>
-                    <Icon className={`w-5 h-5 sm:w-6 sm:h-6 ${comm.color}`} />
+                  <div className={`w-12 h-12 sm:w-14 sm:h-14 rounded-2xl ${comm.bg} flex items-center justify-center mb-5 sm:mb-6 overflow-hidden p-2`}>
+                    {comm.iconSrc ? (
+                      <Image
+                        src={comm.iconSrc}
+                        alt={comm.title}
+                        width={40}
+                        height={40}
+                        className="w-full h-full object-contain rounded-xl"
+                        draggable={false}
+                      />
+                    ) : Icon ? (
+                      <Icon className={`w-5 h-5 sm:w-6 sm:h-6 ${comm.color}`} />
+                    ) : null}
                   </div>
 
                   <h4 className="text-xl sm:text-2xl font-bold text-ink mb-2 sm:mb-3">{comm.title}</h4>

@@ -150,7 +150,7 @@ export default function Footer() {
             <h4 className="font-bold text-lg mb-5 text-surface-50">Quick Links</h4>
             <ul className="space-y-3.5">
               <li>
-                <a href="#why-we-started" className="text-surface-300 hover:text-brand hover:translate-x-1 transition-all duration-300 inline-block">
+                <a href="#about-us" className="text-surface-300 hover:text-brand hover:translate-x-1 transition-all duration-300 inline-block">
                   About Us
                 </a>
               </li>
@@ -165,8 +165,8 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <a href="#partner-with-us" className="text-surface-300 hover:text-brand hover:translate-x-1 transition-all duration-300 inline-block">
-                  Contact Support
+                <a href="#partners" className="text-surface-300 hover:text-brand hover:translate-x-1 transition-all duration-300 inline-block">
+                  Partners
                 </a>
               </li>
             </ul>

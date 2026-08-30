@@ -4,6 +4,7 @@ import { useRef, useState } from "react";
 import { motion, useScroll, useTransform, useSpring, AnimatePresence } from "framer-motion";
 import { Check, Users2, Activity, Sun, ChevronRight, ChevronLeft, Sparkles, Clock } from "lucide-react";
 import AnimatedSection from "../ui/AnimatedSection";
+import Image from "next/image";
 
 export default function StorySection() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -45,8 +46,15 @@ export default function StorySection() {
         <div className="bg-white rounded-3xl p-5 sm:p-6 shadow-xl border border-surface-100 max-w-sm w-full mx-auto">
           {/* Header row */}
           <div className="flex items-center space-x-4 mb-4 sm:mb-5">
-            <div className="w-12 h-12 flex-shrink-0 rounded-2xl bg-highlight/20 flex items-center justify-center">
-              <Sun className="w-5 h-5 text-highlight-dark" />
+            <div className="w-12 h-12 flex-shrink-0 rounded-2xl bg-highlight/20 flex items-center justify-center overflow-hidden p-2">
+              <Image
+                src="/logos/calender.jpg"
+                alt="Morning Schedule"
+                width={32}
+                height={32}
+                className="w-7 h-7 object-contain rounded-md"
+                draggable={false}
+              />
             </div>
             <div>
               <p className="text-xs text-ink-muted">Morning Schedule</p>
@@ -136,8 +144,15 @@ export default function StorySection() {
         <div className="bg-white rounded-3xl p-5 sm:p-6 shadow-xl border border-surface-100 max-w-sm w-full mx-auto">
           {/* Header row */}
           <div className="flex items-center space-x-4 mb-4 sm:mb-5">
-            <div className="w-12 h-12 flex-shrink-0 rounded-2xl bg-accent/15 flex items-center justify-center">
-              <Activity className="w-5 h-5 text-accent-alt" />
+            <div className="w-12 h-12 flex-shrink-0 rounded-2xl bg-accent/15 flex items-center justify-center overflow-hidden p-2">
+              <Image
+                src="/logos/health.jpg"
+                alt="Daily Vitals"
+                width={32}
+                height={32}
+                className="w-7 h-7 object-contain rounded-md"
+                draggable={false}
+              />
             </div>
             <div>
               <p className="text-xs text-ink-muted">Daily Vitals</p>

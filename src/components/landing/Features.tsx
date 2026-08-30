@@ -6,20 +6,36 @@ import { motion, AnimatePresence } from "framer-motion";
 import { staggerParent, staggerChild } from "../ui/StaggerContainer";
 import { useMobileCarousel, MobileCarouselDots } from "../ui/MobileCarousel";
 import AnimatedSection from "../ui/AnimatedSection";
+import Image from "next/image";
 
-// Icon badge: large rounded-2xl background square with icon perfectly centered inside
+// Icon badge: large rounded-2xl background square with icon or custom logo perfectly centered inside
 function IconBadge({
   Icon,
+  iconSrc,
   bgLight,
   iconColor,
+  alt = "Feature icon",
 }: {
-  Icon: LucideIcon;
+  Icon?: LucideIcon;
+  iconSrc?: string;
   bgLight: string;
   iconColor: string;
+  alt?: string;
 }) {
   return (
-    <div className={`w-16 h-16 mb-6 flex-shrink-0 rounded-2xl ${bgLight} flex items-center justify-center transition-colors duration-300`}>
-      <Icon className={`w-7 h-7 ${iconColor}`} />
+    <div className={`w-16 h-16 mb-6 flex-shrink-0 rounded-2xl ${bgLight} flex items-center justify-center transition-colors duration-300 overflow-hidden p-2.5`}>
+      {iconSrc ? (
+        <Image
+          src={iconSrc}
+          alt={alt}
+          width={40}
+          height={40}
+          className="w-full h-full object-contain rounded-xl"
+          draggable={false}
+        />
+      ) : Icon ? (
+        <Icon className={`w-7 h-7 ${iconColor}`} />
+      ) : null}
     </div>
   );
 }
@@ -37,7 +53,7 @@ export default function Features() {
       title: "Gentle Reminders",
       description: "Never miss a medication or appointment. Our alerts are large, friendly, and easy to acknowledge with a single tap.",
       extra: "Features high-contrast buttons, vocal announcement options, and custom repetition intervals. If critical events are missed, the app can automatically escalate notifications to designated family members or emergency contacts.",
-      Icon: CalendarClock,
+      iconSrc: "/logos/calender.jpg",
       bgLight: "bg-brand/10",
       iconColor: "text-brand",
       btnClass: "text-brand hover:text-brand-dark",
@@ -55,7 +71,7 @@ export default function Features() {
       title: "Health Snapshot",
       description: "A clear, easy-to-read dashboard showing daily vitals and mood. Share it instantly with your doctor during visits.",
       extra: "Simple interface for logging blood pressure, glucose, temperature, and pain scales. Generate clean HIPAA-compliant PDF reports to show your primary care physician.",
-      Icon: Activity,
+      iconSrc: "/logos/health.jpg",
       bgLight: "bg-accent/15",
       iconColor: "text-accent-alt",
       btnClass: "text-accent-alt hover:text-accent",
@@ -117,6 +133,8 @@ export default function Features() {
                   {/* Layered icon badge */}
                   <IconBadge
                     Icon={feat.Icon}
+                    iconSrc={feat.iconSrc}
+                    alt={feat.title}
                     bgLight={feat.bgLight}
                     iconColor={feat.iconColor}
                   />

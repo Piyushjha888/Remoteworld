@@ -20,7 +20,7 @@ export default function FAQ() {
   ];
 
   return (
-    <section id="faq" className="py-14 sm:py-20 lg:py-24 bg-white overflow-hidden">
+    <section id="faq" className="scroll-mt-12 py-14 sm:py-20 lg:py-24 bg-white overflow-hidden">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Animated Section Header */}

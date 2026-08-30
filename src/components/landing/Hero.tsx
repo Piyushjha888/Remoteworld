@@ -150,8 +150,7 @@ export default function Hero() {
                   fill
                   sizes="(max-width: 640px) 100vw, 500px"
                   className="object-cover"
-                  priority={currentSlide === 0}
-                  loading={currentSlide === 0 ? "eager" : "lazy"}
+                  priority
                 />
               </motion.div>
             </AnimatePresence>

@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Building2, MapPin, User, Mail, Phone, MessageSquare, Send, CheckCircle2, Loader2, Hospital, X, Handshake } from "lucide-react";
 import AnimatedSection from "../ui/AnimatedSection";
+import Image from "next/image";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -124,13 +125,25 @@ export default function PartnerForm() {
   return (
     <>
       {/* ─── Section with Title + Description + CTA Button ─── */}
-      <section id="partner-with-us" className="py-14 sm:py-20 lg:py-24 relative overflow-hidden bg-surface-50/50">
+      <section id="partners" className="scroll-mt-12 py-14 sm:py-20 lg:py-24 relative overflow-hidden bg-surface-50/50">
+        {/* Fallback anchor for backward compatibility */}
+        <div id="partner-with-us" className="sr-only" />
         {/* Decorative blurry backgrounds */}
         <div className="absolute top-1/4 -left-1/4 w-96 h-96 bg-brand/10 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute bottom-1/4 -right-1/4 w-96 h-96 bg-accent/10 rounded-full blur-3xl pointer-events-none" />
 
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <AnimatedSection className="text-center mb-8 sm:mb-12">
+            <div className="w-14 h-14 sm:w-16 sm:h-16 mx-auto mb-4 rounded-2xl bg-brand/10 flex items-center justify-center p-3 shadow-xs border border-brand/20">
+              <Image
+                src="/logos/doctor.jpg"
+                alt="Doctor & Hospital Network"
+                width={48}
+                height={48}
+                className="w-full h-full object-contain rounded-xl"
+                draggable={false}
+              />
+            </div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-ink mb-3 sm:mb-4">
               Partner Your <span className="text-brand">Hospital or Clinic</span>
             </h2>
@@ -202,6 +215,16 @@ export default function PartnerForm() {
               >
                 {/* Modal Header */}
                 <div className="text-center mb-6 sm:mb-8">
+                  <div className="w-12 h-12 mx-auto mb-3 rounded-2xl bg-brand/10 flex items-center justify-center p-2.5 border border-brand/20">
+                    <Image
+                      src="/logos/doctor.jpg"
+                      alt="Doctor & Hospital Network"
+                      width={36}
+                      height={36}
+                      className="w-full h-full object-contain rounded-lg"
+                      draggable={false}
+                    />
+                  </div>
                   <h3 className="text-2xl sm:text-3xl font-bold text-ink">
                     Join Our <span className="text-brand">Network</span>
                   </h3>

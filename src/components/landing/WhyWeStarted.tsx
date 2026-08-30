@@ -5,7 +5,9 @@ import AnimatedSection from "../ui/AnimatedSection";
 
 export default function WhyWeStarted() {
   return (
-    <section id="why-we-started" className="py-14 sm:py-20 lg:py-24 bg-white overflow-hidden">
+    <section id="about-us" className="scroll-mt-12 py-14 sm:py-20 lg:py-24 bg-white overflow-hidden">
+      {/* Fallback anchor for backward compatibility */}
+      <div id="why-we-started" className="sr-only" />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           

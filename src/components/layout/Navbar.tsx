@@ -1,27 +1,33 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Home, Compass, Sparkles, HelpCircle, type LucideIcon } from "lucide-react";
+import { Users, Handshake, HelpCircle, type LucideIcon } from "lucide-react";
 import { motion } from "framer-motion";
 import { usePathname, useRouter } from "next/navigation";
+import Image from "next/image";
 
 /* ── Reusable icon circle with layout morph active indicator ── */
 function NavCircle({
   id,
+  label,
   Icon,
+  iconSrc,
   active,
   onClick,
 }: {
   id: string;
-  Icon: LucideIcon;
+  label: string;
+  Icon?: LucideIcon;
+  iconSrc?: string;
   active: boolean;
   onClick: (id: string) => void;
 }) {
   return (
     <button
       onClick={() => onClick(id)}
-      className="relative z-10 rounded-full flex items-center justify-center transition-all duration-300 cursor-pointer"
-      aria-label={id}
+      className="relative z-10 rounded-full flex items-center justify-center transition-all duration-300 cursor-pointer group"
+      aria-label={label}
+      title={label}
       style={{
         width: active ? 68 : 58,
         height: active ? 68 : 58,
@@ -44,14 +50,30 @@ function NavCircle({
           transition={{ type: "spring", stiffness: 350, damping: 28 }}
         />
       )}
-      <Icon
-        className="transition-colors duration-300 relative z-20"
-        style={{
-          width: active ? 26 : 23,
-          height: active ? 26 : 23,
-          color: active ? "#03A1AC" : "#f4f4fbff",
-        }}
-      />
+      {iconSrc ? (
+        <Image
+          src={iconSrc}
+          alt={label}
+          width={active ? 26 : 23}
+          height={active ? 26 : 23}
+          className="relative z-20 object-contain transition-all duration-300"
+          style={{
+            width: active ? 26 : 23,
+            height: active ? 26 : 23,
+            filter: active ? "brightness(1.2)" : "brightness(0.95) invert(0.95)",
+          }}
+          draggable={false}
+        />
+      ) : Icon ? (
+        <Icon
+          className="transition-colors duration-300 relative z-20"
+          style={{
+            width: active ? 26 : 23,
+            height: active ? 26 : 23,
+            color: active ? "#03A1AC" : "#f4f4fbff",
+          }}
+        />
+      ) : null}
     </button>
   );
 }
@@ -108,6 +130,12 @@ export default function Navbar() {
         return;
       }
 
+      // If scrolled near the bottom of the page, highlight FAQ
+      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 100) {
+        setRawActiveSection("faq");
+        return;
+      }
+
       const scrollPos = window.scrollY + 350;
 
       const getAbsoluteTop = (id: string) => {
@@ -117,20 +145,22 @@ export default function Navbar() {
       };
 
       const faqTop = getAbsoluteTop("faq");
-      const featuresTop = getAbsoluteTop("features");
-      const howItWorksTop = getAbsoluteTop("how-it-works");
+      const partnersTop = Math.min(getAbsoluteTop("partners"), getAbsoluteTop("partner-with-us"));
+      const aboutTop = Math.min(getAbsoluteTop("about-us"), getAbsoluteTop("why-we-started"));
 
       if (scrollPos >= faqTop) {
         setRawActiveSection("faq");
-      } else if (scrollPos >= featuresTop) {
-        setRawActiveSection("features");
-      } else if (scrollPos >= howItWorksTop) {
-        setRawActiveSection("how-it-works");
+      } else if (scrollPos >= partnersTop) {
+        setRawActiveSection("partners");
+      } else if (scrollPos >= aboutTop) {
+        setRawActiveSection("about-us");
       } else {
         setRawActiveSection("home");
       }
     };
+
     window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
   }, [pathname]);
 
@@ -143,7 +173,10 @@ export default function Navbar() {
     if (id === "home") {
       window.scrollTo({ top: 0, behavior: "smooth" });
     } else {
-      document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+      const el = document.getElementById(id);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth" });
+      }
     }
   };
 
@@ -158,10 +191,22 @@ export default function Navbar() {
     >
       <div className="flex items-center">
 
-        {/* ═══════ LEFT PAIR ═══════ */}
-        <NavCircle id="home" Icon={Home} active={activeSection === "home"} onClick={handleNav} />
+        {/* ═══════ LEFT PAIR: HOME & ABOUT US ═══════ */}
+        <NavCircle
+          id="home"
+          label="Home"
+          iconSrc="/logos/home.jpg"
+          active={activeSection === "home"}
+          onClick={handleNav}
+        />
         <PairBridge />
-        <NavCircle id="how-it-works" Icon={Compass} active={activeSection === "how-it-works"} onClick={handleNav} />
+        <NavCircle
+          id="about-us"
+          label="About Us"
+          Icon={Users}
+          active={activeSection === "about-us"}
+          onClick={handleNav}
+        />
 
         {/* ─── pinch → center ─── */}
         <PinchBridge />
@@ -207,10 +252,22 @@ export default function Navbar() {
         {/* ─── pinch → right ─── */}
         <PinchBridge />
 
-        {/* ═══════ RIGHT PAIR ═══════ */}
-        <NavCircle id="features" Icon={Sparkles} active={activeSection === "features"} onClick={handleNav} />
+        {/* ═══════ RIGHT PAIR: PARTNERS & FAQ ═══════ */}
+        <NavCircle
+          id="partners"
+          label="Partners"
+          Icon={Handshake}
+          active={activeSection === "partners"}
+          onClick={handleNav}
+        />
         <PairBridge />
-        <NavCircle id="faq" Icon={HelpCircle} active={activeSection === "faq"} onClick={handleNav} />
+        <NavCircle
+          id="faq"
+          label="FAQ"
+          Icon={HelpCircle}
+          active={activeSection === "faq"}
+          onClick={handleNav}
+        />
 
       </div>
     </motion.nav>

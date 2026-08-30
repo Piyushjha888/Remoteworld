@@ -4,6 +4,7 @@ import { useState, useCallback, useEffect } from "react";
 import { Download, UserPlus, Users, Stethoscope, Calendar, Heart, ChevronLeft, ChevronRight, ArrowRight, ShieldCheck, Check } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import AnimatedSection from "../ui/AnimatedSection";
+import Image from "next/image";
 
 export default function HowItWorks() {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -79,8 +80,15 @@ export default function HowItWorks() {
       textColor: "text-accent-alt",
       visual: (
         <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-3xl bg-gradient-to-br from-accent/20 to-accent/5 border border-accent/30 flex flex-col items-center justify-center p-3 shadow-inner relative">
-          <div className="w-12 h-12 rounded-2xl bg-accent-alt text-white flex items-center justify-center shadow-md mb-1.5">
-            <Stethoscope className="w-6 h-6" />
+          <div className="w-12 h-12 rounded-2xl bg-accent-alt text-white flex items-center justify-center shadow-md mb-1.5 overflow-hidden p-2">
+            <Image
+              src="/logos/appointment.jpg"
+              alt="Connect Doctor"
+              width={32}
+              height={32}
+              className="w-7 h-7 object-contain rounded-md"
+              draggable={false}
+            />
           </div>
           <span className="text-[10px] font-black uppercase text-accent-alt tracking-wider">e-Prescriptions</span>
         </div>
@@ -98,8 +106,15 @@ export default function HowItWorks() {
       textColor: "text-highlight-dark",
       visual: (
         <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-3xl bg-gradient-to-br from-highlight/25 to-highlight/5 border border-highlight/30 flex flex-col items-center justify-center p-3 shadow-inner relative">
-          <div className="w-12 h-12 rounded-2xl bg-highlight text-ink flex items-center justify-center shadow-md mb-1.5 font-black">
-            <Calendar className="w-6 h-6 text-ink" />
+          <div className="w-12 h-12 rounded-2xl bg-highlight text-ink flex items-center justify-center shadow-md mb-1.5 font-black overflow-hidden p-2">
+            <Image
+              src="/logos/calender.jpg"
+              alt="Book Appointment"
+              width={32}
+              height={32}
+              className="w-7 h-7 object-contain rounded-md"
+              draggable={false}
+            />
           </div>
           <span className="text-[10px] font-black uppercase text-highlight-dark tracking-wider">Schedule</span>
         </div>
@@ -117,8 +132,15 @@ export default function HowItWorks() {
       textColor: "text-alert",
       visual: (
         <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-3xl bg-gradient-to-br from-alert/20 to-alert/5 border border-alert/20 flex flex-col items-center justify-center p-3 shadow-inner relative">
-          <div className="w-12 h-12 rounded-2xl bg-alert text-white flex items-center justify-center shadow-md mb-1.5">
-            <Heart className="w-6 h-6 animate-pulse" />
+          <div className="w-12 h-12 rounded-2xl bg-alert text-white flex items-center justify-center shadow-md mb-1.5 overflow-hidden p-2">
+            <Image
+              src="/logos/health.jpg"
+              alt="Stay Connected"
+              width={32}
+              height={32}
+              className="w-7 h-7 object-contain rounded-md"
+              draggable={false}
+            />
           </div>
           <span className="text-[10px] font-black uppercase text-alert tracking-wider">Real-time</span>
         </div>
