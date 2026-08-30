@@ -166,8 +166,8 @@ export default function SplashScreen({ children }: { children: React.ReactNode }
 
                 {/* Logo icon fading in first */}
                 <motion.img
-                  src="/favicon.ico"
-                  alt=""
+                  src="/logo.png"
+                  alt="RemoteWard"
                   className="splash-logo-icon"
                   initial={{ opacity: 0, scale: 0.5, y: 10 }}
                   animate={{ opacity: 1, scale: 1, y: 0 }}

@@ -10,31 +10,37 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
     const lenis = new Lenis({
       lerp: 0.08,
       smoothWheel: true,
-      syncTouch: true,
+      syncTouch: false, // Prevents mobile touch jitter/inertia conflicts
     });
 
     lenisRef.current = lenis;
+    let rafId: number;
 
     function raf(time: number) {
       lenis.raf(time);
-      requestAnimationFrame(raf);
+      rafId = requestAnimationFrame(raf);
     }
 
-    requestAnimationFrame(raf);
+    rafId = requestAnimationFrame(raf);
 
-    // Allow programmatic scrollTo to work with Lenis
+    // Allow programmatic scrollTo to work with Lenis safely
     const handleAnchorClick = (e: Event) => {
       const target = e.target as HTMLElement;
       const anchor = target.closest("a[href^='#'], button[data-scroll-to]");
       if (!anchor) return;
 
       const href = anchor.getAttribute("href") || anchor.getAttribute("data-scroll-to");
-      if (!href || !href.startsWith("#")) return;
+      // Guard against bare '#' or invalid CSS selectors
+      if (!href || href === "#" || !href.startsWith("#") || href.length <= 1) return;
 
-      const el = document.querySelector(href);
-      if (el) {
-        e.preventDefault();
-        lenis.scrollTo(el as HTMLElement, { offset: -80 });
+      try {
+        const el = document.querySelector(href);
+        if (el) {
+          e.preventDefault();
+          lenis.scrollTo(el as HTMLElement, { offset: -80 });
+        }
+      } catch {
+        // Silently ignore non-standard selectors
       }
     };
 
@@ -42,6 +48,7 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
 
     return () => {
       document.removeEventListener("click", handleAnchorClick);
+      cancelAnimationFrame(rafId);
       lenis.destroy();
     };
   }, []);

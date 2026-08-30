@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { ShieldCheck } from "lucide-react";
 import { motion } from "framer-motion";
 import StaggerContainer, { staggerChild } from "../ui/StaggerContainer";
@@ -150,24 +151,24 @@ export default function Footer() {
             <h4 className="font-bold text-lg mb-5 text-surface-50">Quick Links</h4>
             <ul className="space-y-3.5">
               <li>
-                <a href="#about-us" className="text-surface-300 hover:text-brand hover:translate-x-1 transition-all duration-300 inline-block">
+                <Link href="/#about-us" className="text-surface-300 hover:text-brand hover:translate-x-1 transition-all duration-300 inline-block">
                   About Us
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#features" className="text-surface-300 hover:text-brand hover:translate-x-1 transition-all duration-300 inline-block">
+                <Link href="/#features" className="text-surface-300 hover:text-brand hover:translate-x-1 transition-all duration-300 inline-block">
                   Features
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#faq" className="text-surface-300 hover:text-brand hover:translate-x-1 transition-all duration-300 inline-block">
+                <Link href="/#faq" className="text-surface-300 hover:text-brand hover:translate-x-1 transition-all duration-300 inline-block">
                   Help Center
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#partners" className="text-surface-300 hover:text-brand hover:translate-x-1 transition-all duration-300 inline-block">
+                <Link href="/#partners" className="text-surface-300 hover:text-brand hover:translate-x-1 transition-all duration-300 inline-block">
                   Partners
-                </a>
+                </Link>
               </li>
             </ul>
           </motion.div>
@@ -177,14 +178,14 @@ export default function Footer() {
             <h4 className="font-bold text-lg mb-5 text-surface-50">Legal</h4>
             <ul className="space-y-3.5">
               <li>
-                <a href="/privacy-policy" className="text-surface-300 hover:text-brand hover:translate-x-1 transition-all duration-300 inline-block">
+                <Link href="/privacy-policy" className="text-surface-300 hover:text-brand hover:translate-x-1 transition-all duration-300 inline-block">
                   Privacy Policy
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/privacy-policy" className="text-surface-300 hover:text-brand hover:translate-x-1 transition-all duration-300 inline-block">
+                <Link href="/privacy-policy" className="text-surface-300 hover:text-brand hover:translate-x-1 transition-all duration-300 inline-block">
                   HIPAA Compliance
-                </a>
+                </Link>
               </li>
             </ul>
           </motion.div>

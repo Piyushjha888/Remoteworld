@@ -1,6 +1,6 @@
 "use client";
 
-import { Heart, Activity, Brain, Shield, UserCheck, Stethoscope, type LucideIcon } from "lucide-react";
+import { Activity, Brain, Shield, UserCheck, type LucideIcon } from "lucide-react";
 import { motion } from "framer-motion";
 import AnimatedSection from "../ui/AnimatedSection";
 import { staggerParent, staggerChild } from "../ui/StaggerContainer";

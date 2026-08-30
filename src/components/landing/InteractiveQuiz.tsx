@@ -23,8 +23,8 @@ export default function InteractiveQuiz() {
 
   return (
     <section id="interactive-tool" className="py-16 sm:py-24 bg-white relative overflow-hidden">
-      {/* Scroll anchor offset for navbar link */}
-      <div id="how-it-works" className="absolute -top-20" />
+      {/* Scroll anchor offset for quiz link */}
+      <div id="quiz-section" className="absolute -top-20" />
       
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <AnimatedSection direction="up" delay={0.1}>

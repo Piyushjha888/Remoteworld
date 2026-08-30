@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ChevronDown, CalendarClock, Users2, Activity, type LucideIcon } from "lucide-react";
+import { ChevronDown, Users2, type LucideIcon } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { staggerParent, staggerChild } from "../ui/StaggerContainer";
 import { useMobileCarousel, MobileCarouselDots } from "../ui/MobileCarousel";

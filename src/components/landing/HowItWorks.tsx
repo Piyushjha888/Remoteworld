@@ -1,8 +1,8 @@
 "use client";
 
 import { useState, useCallback, useEffect } from "react";
-import { Download, UserPlus, Users, Stethoscope, Calendar, Heart, ChevronLeft, ChevronRight, ArrowRight, ShieldCheck, Check } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { Download, UserPlus, Users, Stethoscope, Calendar, Heart, ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
+import { motion } from "framer-motion";
 import AnimatedSection from "../ui/AnimatedSection";
 import Image from "next/image";
 

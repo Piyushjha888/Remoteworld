@@ -31,6 +31,7 @@ export default function PartnerForm() {
     email: "",
     phone: "",
     message: "",
+    _rw_hp: "",
   });
 
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
@@ -96,6 +97,7 @@ export default function PartnerForm() {
           email: "",
           phone: "",
           message: "",
+          _rw_hp: "",
         });
         // Auto-close modal after success animation
         setTimeout(() => {
@@ -296,6 +298,17 @@ export default function PartnerForm() {
                       exit={{ opacity: 0, y: 30, transition: { duration: 0.3 } }}
                       className="space-y-6"
                     >
+                      {/* Honeypot field to block automated bots */}
+                      <input
+                        type="text"
+                        name="_rw_hp"
+                        value={formData._rw_hp}
+                        onChange={handleChange}
+                        style={{ display: "none", position: "absolute", opacity: 0 }}
+                        tabIndex={-1}
+                        autoComplete="off"
+                        aria-hidden="true"
+                      />
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <motion.div variants={itemVariants} className="space-y-2">
                           <label className="block text-sm font-semibold text-ink-muted">Hospital or Clinic Name</label>

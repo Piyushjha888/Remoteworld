@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import Script from "next/script";
 import ClickSpark from "@/components/ui/ClickSpark";
 import "./globals.css";
 
@@ -10,8 +9,55 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.remoteward.com"),
   title: "RemoteWard | Healthcare, held together.",
-  description: "Stay connected to your care team and family. RemoteWard brings peace of mind, routine management, and instant support right to your fingertips—designed simply, for everyone.",
+  description:
+    "Stay connected to your care team and family. RemoteWard brings peace of mind, routine management, and instant support right to your fingertips—designed simply, for everyone.",
+  keywords: [
+    "RemoteWard",
+    "healthcare",
+    "caregiver app",
+    "chronic care coordination",
+    "ABHA",
+    "health vitals tracking",
+    "family care circle",
+  ],
+  authors: [{ name: "RemoteWard Care Pvt. Ltd." }],
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title: "RemoteWard | Healthcare, held together.",
+    description:
+      "Stay connected to your care team and family. RemoteWard brings peace of mind, routine management, and instant support right to your fingertips.",
+    url: "https://www.remoteward.com",
+    siteName: "RemoteWard",
+    images: [
+      {
+        url: "/logo.png",
+        width: 512,
+        height: 512,
+        alt: "RemoteWard Logo",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "RemoteWard | Healthcare, held together.",
+    description:
+      "Stay connected to your care team and family. RemoteWard brings peace of mind, routine management, and instant support right to your fingertips.",
+    images: ["/logo.png"],
+  },
+  icons: {
+    icon: "/favicon.ico",
+    apple: "/logo.png",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({
@@ -34,11 +80,6 @@ export default function RootLayout({
         >
           {children}
         </ClickSpark>
-        {/* Lord Icon animated icon library */}
-        <Script
-          src="https://cdn.lordicon.com/lordicon.js"
-          strategy="lazyOnload"
-        />
       </body>
     </html>
   );

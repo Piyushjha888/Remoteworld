@@ -21,18 +21,19 @@ interface ClickSparkProps {
 }
 
 const ClickSpark: React.FC<ClickSparkProps> = ({
-  sparkColor = '#03A1AC', // Default to RemoteWard brand teal
+  sparkColor = '#03A1AC', // RemoteWard brand teal
   sparkSize = 10,
   sparkRadius = 15,
   sparkCount = 8,
   duration = 400,
   easing = 'ease-out',
   extraScale = 1.0,
-  children
+  children,
 }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const sparksRef = useRef<Spark[]>([]);
-  const startTimeRef = useRef<number | null>(null);
+  const animationIdRef = useRef<number | null>(null);
+  const isAnimatingRef = useRef(false);
 
   // Resize canvas to cover the entire viewport
   useEffect(() => {
@@ -45,7 +46,7 @@ const ClickSpark: React.FC<ClickSparkProps> = ({
     };
 
     resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
+    window.addEventListener('resize', resizeCanvas, { passive: true });
 
     return () => {
       window.removeEventListener('resize', resizeCanvas);
@@ -68,22 +69,20 @@ const ClickSpark: React.FC<ClickSparkProps> = ({
     [easing]
   );
 
-  // Animation Loop
-  useEffect(() => {
+  // Animation Loop (Runs ONLY when sparks are active, idles completely otherwise)
+  const startAnimationLoop = useCallback(() => {
+    if (isAnimatingRef.current) return;
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    let animationId: number;
+    isAnimatingRef.current = true;
 
     const draw = (timestamp: number) => {
-      if (!startTimeRef.current) {
-        startTimeRef.current = timestamp;
-      }
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      sparksRef.current = sparksRef.current.filter(spark => {
+      sparksRef.current = sparksRef.current.filter((spark) => {
         const elapsed = timestamp - spark.startTime;
         if (elapsed >= duration) {
           return false;
@@ -110,43 +109,45 @@ const ClickSpark: React.FC<ClickSparkProps> = ({
         return true;
       });
 
-      animationId = requestAnimationFrame(draw);
+      if (sparksRef.current.length > 0) {
+        animationIdRef.current = requestAnimationFrame(draw);
+      } else {
+        // Clear remaining pixels and sleep until the next click
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        isAnimatingRef.current = false;
+        animationIdRef.current = null;
+      }
     };
 
-    animationId = requestAnimationFrame(draw);
+    animationIdRef.current = requestAnimationFrame(draw);
+  }, [duration, easeFunc, extraScale, sparkColor, sparkRadius, sparkSize]);
 
-    return () => {
-      cancelAnimationFrame(animationId);
-    };
-  }, [sparkColor, sparkSize, sparkRadius, sparkCount, duration, easeFunc, extraScale]);
-
-  // Global window click listener to trigger spark animation anywhere
+  // Global window click listener to spawn sparks and wake animation loop
   useEffect(() => {
     const handleGlobalClick = (e: MouseEvent) => {
-      const canvas = canvasRef.current;
-      if (!canvas) return;
-
-      // Because canvas is fixed positioned at top: 0, left: 0, 
-      // clientX and clientY map exactly to canvas coordinates.
       const x = e.clientX;
       const y = e.clientY;
-
       const now = performance.now();
+
       const newSparks = Array.from({ length: sparkCount }, (_, i) => ({
         x,
         y,
         angle: (2 * Math.PI * i) / sparkCount,
-        startTime: now
+        startTime: now,
       }));
 
       sparksRef.current.push(...newSparks);
+      startAnimationLoop();
     };
 
-    window.addEventListener('click', handleGlobalClick);
+    window.addEventListener('click', handleGlobalClick, { passive: true });
     return () => {
       window.removeEventListener('click', handleGlobalClick);
+      if (animationIdRef.current) {
+        cancelAnimationFrame(animationIdRef.current);
+      }
     };
-  }, [sparkCount]);
+  }, [sparkCount, startAnimationLoop]);
 
   return (
     <>
@@ -161,7 +162,7 @@ const ClickSpark: React.FC<ClickSparkProps> = ({
           top: 0,
           left: 0,
           pointerEvents: 'none',
-          zIndex: 99999
+          zIndex: 99999,
         }}
       />
       {children}
