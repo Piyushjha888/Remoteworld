@@ -10,9 +10,9 @@ interface TopBannerProps {
 
 export default function TopBanner({
   announcements = [
-    "Empowering patients and 70% off revolutionizing healthcare",
-    "Connected care for peace of mind",
-    "Empowering patients and 70% off revolutionizing healthcare",
+    "Produced by Kapil Singh Rawat ",
+    "And directed by Sukhdev ",
+    "Devloped by Piyush jha  ",
     "Real-time routine management & instant support",
   ],
   className = "",
@@ -25,7 +25,7 @@ export default function TopBanner({
 
   return (
     <div
-      className={`hidden md:flex fixed top-0 left-1/2 -translate-x-1/2 z-40 items-center justify-center pointer-events-auto ${className}`}
+      className={`hidden md:flex absolute top-0 left-[calc(50%+50px)] lg:left-[calc(50%+75px)] -translate-x-1/2 z-40 items-center justify-center pointer-events-auto ${className}`}
       style={{
         width: "944px",
         maxWidth: "calc(100vw - 32px)",
@@ -75,7 +75,7 @@ export default function TopBanner({
               {items.map((text, idx) => (
                 <span key={idx} className="flex items-center space-x-10">
                   <span>{text}</span>
-                  <span className="opacity-60 text-xs">•</span>
+                  <span className="opacity-60 text-xs">|</span>
                 </span>
               ))}
             </div>
@@ -85,7 +85,7 @@ export default function TopBanner({
               {items.map((text, idx) => (
                 <span key={`dup-${idx}`} className="flex items-center space-x-10">
                   <span>{text}</span>
-                  <span className="opacity-60 text-xs">•</span>
+                  <span className="opacity-60 text-xs">|</span>
                 </span>
               ))}
             </div>

@@ -41,24 +41,22 @@ export default function Hero() {
       {/* Top Marquee Announcement Banner (Desktop & Tablet only) */}
       <TopBanner />
 
-      {/* Top Header Row with Aligned, Prominent RemoteWard Logo */}
-      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-5 sm:pt-7 lg:pt-9 pb-2 relative z-30 flex items-center justify-between">
-        <motion.div
-          initial={{ opacity: 0, y: -16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: [0.25, 0.4, 0.25, 1] }}
-          className="inline-block"
-        >
-          <Logo imgClassName="h-12 sm:h-14 md:h-16 lg:h-20 w-auto" />
-        </motion.div>
-      </div>
+      {/* Prominent RemoteWard Brand Logo in Top-Left */}
+      <motion.div
+        initial={{ opacity: 0, y: -16 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: [0.25, 0.4, 0.25, 1] }}
+        className="absolute top-3 left-0 sm:top-4 sm:left-4 md:top-5 md:left-5 lg:top-6 lg:left-5 xl:top-7 xl:left-2 2xl:left-3 z-30 pointer-events-auto"
+      >
+        <Logo imgClassName="h-9 sm:h-12 md:h-14 lg:h-20 xl:h-24 w-auto" />
+      </motion.div>
 
       {/* Ambient top radiant glow behind banner */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[240px] bg-gradient-to-b from-[#47C2CB]/25 to-transparent blur-3xl pointer-events-none" />
       <div className="absolute top-20 left-10 w-48 h-48 bg-support-purple opacity-20 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-20 right-10 w-80 h-80 bg-brand opacity-15 rounded-full blur-3xl pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-8 sm:pb-12 relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center flex-1 my-auto">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 sm:pt-24 md:pt-28 lg:pt-32 xl:pt-36 pb-8 sm:pb-12 relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center flex-1 my-auto">
         {/* Hero Text */}
         <div className="space-y-5 sm:space-y-7 max-w-2xl mt-4 lg:mt-0">
           {/* Title */}
@@ -163,9 +161,8 @@ export default function Hero() {
                 <button
                   key={idx}
                   onClick={() => setCurrentSlide(idx)}
-                  className={`h-2.5 rounded-full transition-all duration-300 cursor-pointer ${
-                    currentSlide === idx ? "bg-[#01B2BD] w-7" : "bg-white/60 hover:bg-white w-2.5"
-                  }`}
+                  className={`h-2.5 rounded-full transition-all duration-300 cursor-pointer ${currentSlide === idx ? "bg-[#01B2BD] w-7" : "bg-white/60 hover:bg-white w-2.5"
+                    }`}
                   aria-label={`Go to slide ${idx + 1}`}
                 />
               ))}
