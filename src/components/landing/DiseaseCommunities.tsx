@@ -110,6 +110,7 @@ export default function DiseaseCommunities() {
                         height={40}
                         className="w-full h-full object-contain rounded-xl"
                         draggable={false}
+                        loading="lazy"
                       />
                     ) : Icon ? (
                       <Icon className={`w-5 h-5 sm:w-6 sm:h-6 ${comm.color}`} />

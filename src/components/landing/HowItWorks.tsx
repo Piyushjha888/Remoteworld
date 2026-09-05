@@ -88,6 +88,7 @@ export default function HowItWorks() {
               height={32}
               className="w-7 h-7 object-contain rounded-md"
               draggable={false}
+              loading="lazy"
             />
           </div>
           <span className="text-[10px] font-black uppercase text-accent-alt tracking-wider">e-Prescriptions</span>
@@ -114,6 +115,7 @@ export default function HowItWorks() {
               height={32}
               className="w-7 h-7 object-contain rounded-md"
               draggable={false}
+              loading="lazy"
             />
           </div>
           <span className="text-[10px] font-black uppercase text-highlight-dark tracking-wider">Schedule</span>
@@ -140,6 +142,7 @@ export default function HowItWorks() {
               height={32}
               className="w-7 h-7 object-contain rounded-md"
               draggable={false}
+              loading="lazy"
             />
           </div>
           <span className="text-[10px] font-black uppercase text-alert tracking-wider">Real-time</span>

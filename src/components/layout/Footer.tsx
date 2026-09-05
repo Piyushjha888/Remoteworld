@@ -156,8 +156,8 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/#features" className="text-surface-300 hover:text-brand hover:translate-x-1 transition-all duration-300 inline-block">
-                  Features
+                <Link href="/#how-it-works" className="text-surface-300 hover:text-brand hover:translate-x-1 transition-all duration-300 inline-block">
+                  How It Works
                 </Link>
               </li>
               <li>

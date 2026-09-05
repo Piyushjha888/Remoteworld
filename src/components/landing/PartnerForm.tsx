@@ -144,6 +144,7 @@ export default function PartnerForm() {
                 height={48}
                 className="w-full h-full object-contain rounded-xl"
                 draggable={false}
+                loading="lazy"
               />
             </div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-ink mb-3 sm:mb-4">
@@ -225,6 +226,7 @@ export default function PartnerForm() {
                       height={36}
                       className="w-full h-full object-contain rounded-lg"
                       draggable={false}
+                      loading="lazy"
                     />
                   </div>
                   <h3 className="text-2xl sm:text-3xl font-bold text-ink">

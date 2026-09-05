@@ -8,7 +8,6 @@ import SplashScreen from "@/components/ui/SplashScreen";
 // Lazy load below-the-fold components for optimal initial bundle size and performance
 const ProblemSection = dynamic(() => import("@/components/landing/ProblemSection"));
 const HowItWorks = dynamic(() => import("@/components/landing/HowItWorks"));
-const Features = dynamic(() => import("@/components/landing/Features"));
 const WhyWeStarted = dynamic(() => import("@/components/landing/WhyWeStarted"));
 const StorySection = dynamic(() => import("@/components/landing/StorySection"));
 const DiseaseCommunities = dynamic(() => import("@/components/landing/DiseaseCommunities"));
@@ -27,7 +26,6 @@ export default function Home() {
           <StatsBar />
           <ProblemSection />
           <HowItWorks />
-          <Features />
           <WhyWeStarted />
           <StorySection />
           <DiseaseCommunities />

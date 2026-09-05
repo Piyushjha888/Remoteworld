@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { ArrowRight, ShieldCheck, HeartHandshake, Check } from "lucide-react";
+import { ArrowRight, ShieldCheck, HeartHandshake } from "lucide-react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import Logo from "../ui/Logo";
@@ -9,11 +9,6 @@ import Logo from "../ui/Logo";
 const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 40 },
   animate: { opacity: 1, y: 0, transition: { duration: 0.7, delay, ease: [0.25, 0.4, 0.25, 1] as const } },
-});
-
-const fadeLeft = (delay = 0) => ({
-  initial: { opacity: 0, x: -50 },
-  animate: { opacity: 1, x: 0, transition: { type: "spring" as const, stiffness: 120, damping: 20, delay } },
 });
 
 const scaleIn = (delay = 0) => ({
@@ -95,7 +90,7 @@ export default function Hero() {
               href="https://play.google.com/store/apps/details?id=com.application.remoteward"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-highlight hover:bg-highlight-dark text-ink font-bold text-base sm:text-lg px-6 py-3.5 sm:py-4 rounded-xl text-center shadow-lg flex items-center justify-center cursor-pointer"
+              className="bg-gradient-to-r from-brand to-brand-dark hover:brightness-110 text-white font-bold text-base sm:text-lg px-6 py-3.5 sm:py-4 rounded-xl text-center shadow-lg flex items-center justify-center cursor-pointer transition-all"
               whileHover={{ scale: 1.04, y: -3 }}
               whileTap={{ scale: 0.97 }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
@@ -148,9 +143,10 @@ export default function Hero() {
                   src={heroImages[currentSlide]}
                   alt="Hero illustration slider"
                   fill
-                  sizes="(max-width: 640px) 100vw, 500px"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 500px"
                   className="object-cover"
-                  priority
+                  priority={currentSlide === 0}
+                  loading={currentSlide === 0 ? "eager" : "lazy"}
                 />
               </motion.div>
             </AnimatePresence>
@@ -169,21 +165,6 @@ export default function Hero() {
               ))}
             </div>
           </div>
-
-          {/* Floating UI Element — matches "Medication Taken" card from screenshots */}
-          <motion.div
-            className="absolute -left-2 sm:-left-8 top-1/4 bg-white p-3 sm:p-4 rounded-2xl shadow-xl z-20 flex items-center space-x-3 sm:space-x-4 border border-surface-200"
-            {...fadeLeft(0.8)}
-          >
-            {/* Centered icon badge */}
-            <div className="w-10 h-10 sm:w-12 sm:h-12 flex-shrink-0 rounded-xl bg-accent/20 flex items-center justify-center">
-              <Check className="w-5 h-5 sm:w-6 sm:h-6 text-accent-alt" />
-            </div>
-            <div>
-              <p className="text-xs sm:text-sm font-bold text-ink">Medication Taken</p>
-              <p className="text-[10px] sm:text-xs text-ink-muted">9:00 AM Today</p>
-            </div>
-          </motion.div>
         </motion.div>
       </div>
     </section>

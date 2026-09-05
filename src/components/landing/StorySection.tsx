@@ -54,6 +54,7 @@ export default function StorySection() {
                 height={32}
                 className="w-7 h-7 object-contain rounded-md"
                 draggable={false}
+                loading="lazy"
               />
             </div>
             <div>
@@ -152,6 +153,7 @@ export default function StorySection() {
                 height={32}
                 className="w-7 h-7 object-contain rounded-md"
                 draggable={false}
+                loading="lazy"
               />
             </div>
             <div>

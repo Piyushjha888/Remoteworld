@@ -26,6 +26,7 @@ export default function LogoIcon({
       className={`object-contain ${className}`}
       style={style}
       draggable={false}
+      loading="lazy"
     />
   );
 }
