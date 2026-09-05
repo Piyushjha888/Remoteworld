@@ -91,11 +91,14 @@ function NavCircle({
   onClick: (id: string) => void;
 }) {
   return (
-    <button
+    <motion.button
       onClick={() => onClick(id)}
-      className="relative z-10 rounded-full flex items-center justify-center transition-all duration-300 cursor-pointer group text-white hover:text-[#01B2BD]"
+      className="relative z-10 rounded-full flex items-center justify-center transition-all duration-300 cursor-pointer group text-white hover:text-[#01B2BD] focus:outline-none"
       aria-label={label}
       title={label}
+      whileHover={{ scale: active ? 1.03 : 1.08 }}
+      whileTap={{ scale: 0.94 }}
+      transition={{ type: "spring", stiffness: 400, damping: 25 }}
       style={{
         width: active ? 68 : 58,
         height: active ? 68 : 58,
@@ -122,15 +125,15 @@ function NavCircle({
         customIcon
       ) : Icon ? (
         <Icon
-          className="transition-colors duration-300 relative z-20 group-hover:text-[#03A1AC]"
+          className="transition-all duration-300 relative z-20 group-hover:scale-110 group-hover:text-[#01B2BD]"
           style={{
             width: active ? 26 : 23,
             height: active ? 26 : 23,
-            color: active ? "#03A1AC" : "#FFFFFF",
+            color: active ? "#01B2BD" : "#FFFFFF",
           }}
         />
       ) : null}
-    </button>
+    </motion.button>
   );
 }
 

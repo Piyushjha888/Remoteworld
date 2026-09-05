@@ -5,6 +5,7 @@ import { ArrowRight, ShieldCheck, HeartHandshake } from "lucide-react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import Logo from "../ui/Logo";
+import TopBanner from "./TopBanner";
 
 const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 40 },
@@ -37,21 +38,19 @@ export default function Hero() {
   }, [heroImages.length]);
 
   return (
-    <section id="home" className="hero-gradient min-h-[85vh] lg:min-h-[90vh] flex items-start pt-20 sm:pt-28 lg:pt-36 pb-8 sm:pb-12 relative overflow-hidden">
-      {/* Top Left Logo */}
-      <div className="absolute top-5 left-4 sm:top-6 sm:left-6 lg:top-8 lg:left-12 z-50">
-        <Logo textClass="text-2xl sm:text-3xl" />
+    <section id="home" className="hero-gradient min-h-[85vh] lg:min-h-[90vh] flex items-start pt-20 sm:pt-24 lg:pt-32 pb-8 sm:pb-12 relative overflow-hidden">
+      {/* Top Marquee Announcement Banner (Desktop & Tablet only) */}
+      <TopBanner />
+
+      {/* Top Left Logo matching Image 1 */}
+      <div className="absolute top-5 left-5 sm:top-6 sm:left-8 lg:top-7 lg:left-12 z-50">
+        <Logo imgClassName="h-10 sm:h-12 lg:h-14 w-auto" />
       </div>
 
-      {/* Decorative Background Elements */}
-      <motion.div
-        className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[150px] bg-brand/15 opacity-40 rounded-full blur-3xl pointer-events-none"
-        initial={{ opacity: 0, scale: 0.5 }}
-        animate={{ opacity: 0.4, scale: 1 }}
-        transition={{ duration: 1.5, ease: "easeOut" }}
-      />
-      <div className="absolute top-20 left-10 w-32 h-32 bg-support-purple opacity-20 rounded-full blur-2xl"></div>
-      <div className="absolute bottom-20 right-10 w-64 h-64 bg-brand opacity-10 rounded-full blur-3xl"></div>
+      {/* Ambient top radiant glow behind banner */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[240px] bg-gradient-to-b from-[#47C2CB]/25 to-transparent blur-3xl pointer-events-none" />
+      <div className="absolute top-20 left-10 w-48 h-48 bg-support-purple opacity-20 rounded-full blur-3xl pointer-events-none"></div>
+      <div className="absolute bottom-20 right-10 w-80 h-80 bg-brand opacity-15 rounded-full blur-3xl pointer-events-none"></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-8 sm:pb-12 relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
         {/* Hero Text */}
@@ -128,6 +127,24 @@ export default function Hero() {
           className="relative w-full h-[320px] sm:h-[450px] lg:h-[550px] mt-8 lg:mt-0 animate-float max-w-lg mx-auto"
           {...scaleIn(0.3)}
         >
+          {/* Floating Medication Taken Status Badge matching Image 1 */}
+          <motion.div
+            className="absolute -top-3.5 -left-3.5 sm:-top-5 sm:-left-5 z-40 bg-white/95 backdrop-blur-md px-3.5 py-2.5 sm:px-4 sm:py-3 rounded-2xl shadow-[0_12px_32px_rgba(0,0,0,0.12)] border border-gray-100/90 flex items-center space-x-3 pointer-events-none"
+            initial={{ opacity: 0, y: 15, scale: 0.92 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ delay: 0.7, duration: 0.6, type: "spring", stiffness: 300 }}
+          >
+            <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-[#E6F8F0] flex items-center justify-center text-[#10B981] flex-shrink-0">
+              <svg className="w-4 h-4 sm:w-4.5 sm:h-4.5" viewBox="0 0 20 20" fill="currentColor">
+                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+              </svg>
+            </div>
+            <div className="pr-1">
+              <p className="text-xs sm:text-sm font-semibold text-ink leading-tight">Medication Taken</p>
+              <p className="text-[10px] sm:text-xs text-ink-muted leading-tight mt-0.5">9:00 AM Today</p>
+            </div>
+          </motion.div>
+
           <div className="absolute inset-0 bg-brand/5 rounded-[2.5rem] transform rotate-3 scale-105"></div>
           <div className="relative z-10 w-full h-full rounded-[2.5rem] shadow-2xl border-4 sm:border-8 border-white overflow-hidden bg-white">
             <AnimatePresence mode="wait">
