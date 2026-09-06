@@ -46,9 +46,9 @@ export default function Hero() {
         initial={{ opacity: 0, y: -16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: [0.25, 0.4, 0.25, 1] }}
-        className="absolute top-3 left-0 sm:top-4 sm:left-4 md:top-5 md:left-5 lg:top-6 lg:left-5 xl:top-7 xl:left-2 2xl:left-3 z-30 pointer-events-auto"
+        className="absolute top-2 left-3 sm:top-4 sm:left-4 md:top-5 md:left-5 lg:top-6 lg:left-5 xl:top-7 xl:left-2 2xl:left-3 z-30 pointer-events-auto"
       >
-        <Logo imgClassName="h-9 sm:h-12 md:h-14 lg:h-20 xl:h-24 w-auto" />
+        <Logo imgClassName="h-12 sm:h-12 md:h-14 lg:h-20 xl:h-24 w-auto" />
       </motion.div>
 
       {/* Ambient top radiant glow behind banner */}

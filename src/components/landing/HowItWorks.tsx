@@ -75,14 +75,14 @@ export default function HowItWorks() {
       badge: "CLINIC SYNC",
       desc: "Optionally link with participating clinics to sync prescriptions and reports.",
       icon: Stethoscope,
-      accentColor: "#03E991",
+      accentColor: "#E39FF6",
       bgLight: "bg-accent/15",
       textColor: "text-accent-alt",
       visual: (
-        <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-3xl bg-gradient-to-br from-accent/20 to-accent/5 border border-accent/30 flex flex-col items-center justify-center p-3 shadow-inner relative">
-          <div className="w-12 h-12 rounded-2xl bg-accent-alt text-white flex items-center justify-center shadow-md mb-1.5 overflow-hidden p-2">
+        <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-3xl bg-[#E39FF6] to-accent/5 border border-accent/30 flex flex-col items-center justify-center p-3 shadow-inner relative">
+          <div className="w-12 h-12 rounded-2xl bg-[#ffff] text-white flex items-center justify-center shadow-md mb-1.5 overflow-hidden p-2">
             <Image
-              src="/logos/appointment.jpg"
+              src="/logos/Group1.svg"
               alt="Connect Doctor"
               width={32}
               height={32}
@@ -91,7 +91,7 @@ export default function HowItWorks() {
               loading="lazy"
             />
           </div>
-          <span className="text-[10px] font-black uppercase text-accent-alt tracking-wider">e-Prescriptions</span>
+          <span className="text-[10px] font-black uppercase text-[#710193] tracking-wider">e-Prescriptions</span>
         </div>
       ),
     },
@@ -107,7 +107,7 @@ export default function HowItWorks() {
       textColor: "text-highlight-dark",
       visual: (
         <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-3xl bg-gradient-to-br from-highlight/25 to-highlight/5 border border-highlight/30 flex flex-col items-center justify-center p-3 shadow-inner relative">
-          <div className="w-12 h-12 rounded-2xl bg-highlight text-ink flex items-center justify-center shadow-md mb-1.5 font-black overflow-hidden p-2">
+          <div className="w-12 h-12 rounded-2xl bg-white text-ink flex items-center justify-center shadow-md mb-1.5 font-black overflow-hidden p-2">
             <Image
               src="/logos/calender.jpg"
               alt="Book Appointment"
@@ -134,9 +134,9 @@ export default function HowItWorks() {
       textColor: "text-alert",
       visual: (
         <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-3xl bg-gradient-to-br from-alert/20 to-alert/5 border border-alert/20 flex flex-col items-center justify-center p-3 shadow-inner relative">
-          <div className="w-12 h-12 rounded-2xl bg-alert text-white flex items-center justify-center shadow-md mb-1.5 overflow-hidden p-2">
+          <div className="w-12 h-12 rounded-2xl bg-[#FF9D9D] text-white flex items-center justify-center shadow-md mb-1.5 overflow-hidden p-2">
             <Image
-              src="/logos/health.jpg"
+              src="/logos/heart.svg"
               alt="Stay Connected"
               width={32}
               height={32}
@@ -194,7 +194,7 @@ export default function HowItWorks() {
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-brand/5 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
+
         {/* Header */}
         <AnimatedSection direction="up" className="text-center max-w-3xl mx-auto mb-10 sm:mb-14">
           <h2 className="text-brand font-semibold tracking-wide uppercase text-xs sm:text-sm mb-2 sm:mb-3">
@@ -293,11 +293,10 @@ export default function HowItWorks() {
                   onClick={() => {
                     if (!isCenter) setActiveIndex(idx);
                   }}
-                  className={`absolute w-[290px] sm:w-[330px] md:w-[350px] h-[450px] sm:h-[480px] rounded-[2.25rem] bg-white border-2 transition-colors duration-300 flex flex-col justify-between p-6 sm:p-7 select-none ${
-                    isCenter
-                      ? "border-surface-300 shadow-2xl cursor-default"
-                      : "border-surface-200 shadow-md cursor-pointer hover:border-brand/40"
-                  }`}
+                  className={`absolute w-[290px] sm:w-[330px] md:w-[350px] h-[450px] sm:h-[480px] rounded-[2.25rem] bg-white border-2 transition-colors duration-300 flex flex-col justify-between p-6 sm:p-7 select-none ${isCenter
+                    ? "border-surface-300 shadow-2xl cursor-default"
+                    : "border-surface-200 shadow-md cursor-pointer hover:border-brand/40"
+                    }`}
                   style={{
                     perspective: 1000,
                     willChange: "transform, opacity",
@@ -369,11 +368,10 @@ export default function HowItWorks() {
             <button
               key={idx}
               onClick={() => setActiveIndex(idx)}
-              className={`h-2.5 rounded-full transition-all duration-300 cursor-pointer ${
-                activeIndex === idx
-                  ? "w-8 bg-brand"
-                  : "w-2.5 bg-surface-300 hover:bg-surface-400"
-              }`}
+              className={`h-2.5 rounded-full transition-all duration-300 cursor-pointer ${activeIndex === idx
+                ? "w-8 bg-brand"
+                : "w-2.5 bg-surface-300 hover:bg-surface-400"
+                }`}
               aria-label={`Go to step ${idx + 1}`}
             />
           ))}
