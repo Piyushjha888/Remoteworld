@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import ClickSpark from "@/components/ui/ClickSpark";
 import "./globals.css";
 
@@ -80,6 +81,7 @@ export default function RootLayout({
         >
           {children}
         </ClickSpark>
+        <SpeedInsights />
       </body>
     </html>
   );
